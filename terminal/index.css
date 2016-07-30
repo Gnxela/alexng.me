@@ -1,0 +1,40 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	-webkit-user-select: none;  
+	-moz-user-select: none;    
+	-ms-user-select: none;      
+	user-select: none;
+}
+
+body {
+	background-color: #222222;
+}
+
+h1, h2 {
+	color: white;
+	font-smoothing: none;
+	-webkit-font-smoothing : none;
+	font-family: courier;
+	font-weight: 100;
+	display: inline-block;
+}
+
+h1 {
+	font-size: 24px;
+	border-bottom: 1px solid;
+}
+
+h2 { 
+	font-size: 12px;
+}
+
+h {
+	color: #afa;
+}
+
+h a {
+	text-decoration: none;
+	border-bottom: 1px solid;
+	color: #afa;
+}

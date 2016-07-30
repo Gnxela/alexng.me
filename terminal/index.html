@@ -1,0 +1,31 @@
+<head>
+	<link href="index.css" type="text/css" rel="stylesheet">
+	<link href="console.css" type="text/css" rel="stylesheet">
+	<script src="jquery-3.0.0.min.js"></script>
+	<script src="console.js"></script>
+	<title>Alex Ng / Terminal</title>
+</head>
+<body>
+	<div align="center" style="height: 100%;">
+		<br>
+		<h1>Console Emulator</h1>
+		<br><br>
+		<h2>
+			Console emulator developed by <h>Alex Ng</h> using pure <h>HTML</h> and <h>JavaScript</h> (including <h>jQuery</h>).
+			<br>
+			This is a continuous <h>work in progress</h> and as of now is <h>not complete</h>.
+			<br>
+			Inspired by <h><a href="http://www.masswerk.at/">mass:werk</a></h> and his emulator.
+		</h2>
+		<div class="console" >
+			
+		</div>
+	</div>
+	<script>
+		$(document).ready(function() {
+			$.getScript('handler.js', function() {
+				var console = new Console($(".console"));
+			});
+		});
+	</script>
+</body>

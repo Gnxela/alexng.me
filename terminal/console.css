@@ -1,0 +1,56 @@
+.caret {
+	display: inline-block;
+	width: 7px;
+	height: 14px;
+	background-color: rgba(50,  255, 50, 1);
+}
+
+.console {
+	width: 500px;
+	height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+	border: 1px grey solid;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	background-color: black;
+	text-align: left;
+	color: #ccc;
+	font-family: courier;
+	font-weight: 100;
+	font-size: 12px;
+	line-height: 14px;
+}
+
+.console-input-container {
+	position: relative;
+	display: inline;
+}
+
+.console-input, .console-output {
+	color: #ccc;
+	font-family: courier;
+	font-weight: 100;
+	font-size: 12px;
+	line-height: 14px;
+	display: inline-block;
+}
+
+.console-input {
+	margin-left: 7px;
+	color: #ccc;
+}
+
+.console-input-textarea {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border: none;
+	resize: none;
+	outline : none;
+	width: 100%;
+	min-height: 100%;
+	opacity: 0;
+}

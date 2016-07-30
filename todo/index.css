@@ -1,0 +1,59 @@
+@font-face {
+	font-family: text-font;
+	src: url(res/Journey.ttf);
+}
+
+* {
+	margin: 0 0 0 0;
+	font-family: text-font;
+	font-weight: 700;
+}
+
+a {
+	background: none;
+	text-decoration: none;
+	color: inherit;
+}
+
+body {
+	background-color: rgb(255, 255, 50);
+}
+
+.header {
+	background-color: rgb(255, 224, 0);
+	display: block;
+	height: 30px;
+	line-height: 32px;/* Larger than height to verticaly align in the center  */
+	border-bottom: 1px solid black;
+	font-weight: 700;
+	font-size: 28px;
+	margin-bottom: 9px;
+}
+
+.login {
+	color: black;
+	position: absolute;
+	top: 9px;
+	right: 7px;
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 700;
+	background: none;
+	float: right;
+	margin-right: 7px;
+}
+
+.tasks {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.task:before {
+	content: '•';
+	text-decoration: none;
+}
+
+.task {
+	display: block;
+	margin-bottom: 3px;
+}
