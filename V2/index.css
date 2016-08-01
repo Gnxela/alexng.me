@@ -60,6 +60,7 @@
 
 .left .image {
         left: 50%;
+	transform: translate(-10px, 0px);
 }
 
 .left .text {
