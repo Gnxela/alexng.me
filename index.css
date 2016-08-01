@@ -1,45 +1,67 @@
 * {
-	font-family: "Segoe UI Light", "HelveticaNeue-UltraLight", sans-serif;
-	font-weight: 100;
-	padding: 0px;
 	margin: 0px;
+	font-family: "Segoe UI Light", "HelveticaNeue-UltraLight", sans-serif;
+	-webkit-transition: all 1s;
 }
 
-h1 {
-	font-size: 124px;
+body {
+	perspective: 2000px;
+	scale:0.5;
 }
 
-h2 {
-	font-size: 22px;
+.title {
+	position: relative;
+	top: 2%;
+	font-size: 36px;
+	text-align: center;
+	line-height: 12px;
 }
 
-.hline {
-	margin: 25px 0px 25px 0px;
-	padding: 0px 0px 2px 0px;
+.pane {
+	max-height: 95%;
+	width: 49%;
+	position: absolute;
+	border: 1px solid #aaa;
+        height: 90%;
+        top: 5%;
+}
+
+.right {
+        right: 1%;
+        -webkit-transform: rotateY(-10deg);
+	-webkit-transform-origin: right;
+        transform: rotateY(-10deg);
+}
+
+
+.left {
+	left: 1%;
+	-webkit-transform: rotateY(10deg);
+	-webkit-transform-origin: left;
+	transform: rotateY(10deg);
+}
+
+.top {
+	height: 44%;
+}
+
+.bottom {
+	height: 44%;
+	top: 51%;
+}
+
+.content {
+	height: 100%;
+	margin: 5px 5px 5px 5px;
+	line-height: 18px;
+	font-size: 16px;
+	overflow: none;
+}
+
+.content h1 {
 	display: block;
-	background-color: rgba(200, 200, 200, 0.5);
-	width: 40%;
-	border-radius: 5px;
-}
-
-.vline {
-	display: inline-block;
-}
-
-.link {
-	display: inline-block;
-	border-radius: 5px;
-	background-color: rgba(200, 200, 200, 0.4);
-	overflow: hidden;
-	margin: 0px 5px 0px 5px;
-}
-
-h2 a {
-	border-bottom: 1px solid #666666;
-	color: black;
-	display: table;
-}
-
-a {
-	text-decoration: none;
+	text-align: center;
+	font-weight: 100;
+	font-size: 22px;
+	margin-bottom: 12px;
 }
