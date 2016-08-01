@@ -1,67 +1,73 @@
 * {
 	margin: 0px;
-	font-family: "Segoe UI Light", "HelveticaNeue-UltraLight", sans-serif;
-	-webkit-transition: all 1s;
+	font-family: 'Open Sans Condensed', sans-serif;
 }
 
-body {
-	perspective: 2000px;
-	scale:0.5;
+.frontpage {
+	height: 100%;
+	background-image: url('res/frontpage.jpg');
+	background-size: cover;
+	color: white;
 }
 
-.title {
-	position: relative;
-	top: 2%;
-	font-size: 36px;
-	text-align: center;
-	line-height: 12px;
-}
-
-.pane {
-	max-height: 95%;
-	width: 49%;
+.frontpage .center {
 	position: absolute;
-	border: 1px solid #aaa;
-        height: 90%;
-        top: 5%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 64px;
+	font-weight: 100;
 }
 
-.right {
-        right: 1%;
-        -webkit-transform: rotateY(-10deg);
-	-webkit-transform-origin: right;
-        transform: rotateY(-10deg);
+.frontpage .desc {
+	font-size: 12px;
+	font-weight: 100;
+	text-align: center;
 }
 
+.section {
+	position: relative;
+	height: 500px;
+	display: block;
+	overflow: hidden;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.5);	
+}
 
 .left {
-	left: 1%;
-	-webkit-transform: rotateY(10deg);
-	-webkit-transform-origin: left;
-	transform: rotateY(10deg);
+	background-color: rgba(0, 0, 0, 0.3);
 }
 
-.top {
-	height: 44%;
+.section .image {
+	position: absolute;
+	bottom: 10px;
+	left: 0px;
+	width: 50%;
+	height: 480;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 10px center; 
 }
 
-.bottom {
-	height: 44%;
-	top: 51%;
-}
-
-.content {
-	height: 100%;
-	margin: 5px 5px 5px 5px;
-	line-height: 18px;
-	font-size: 16px;
-	overflow: none;
-}
-
-.content h1 {
-	display: block;
-	text-align: center;
-	font-weight: 100;
+.section .text {
+	padding-left: 10px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
 	font-size: 22px;
-	margin-bottom: 12px;
+	vertical-align: center;
+	transform: translate(0%, -50%);
+}
+
+.left .image {
+        left: 50%;
+	transform: translate(-10px, 0px);
+}
+
+.left .text {
+        left: 0px;
+}
+
+
+.section .text h1 {
+	font-weight: 100;
 }
