@@ -45,26 +45,31 @@
 	height: 480;
 	background-size: contain;
 	background-repeat: no-repeat;
-	background-position: 10px center; 
+	background-position: left center; 
 }
 
 .section .text {
-	padding-left: 10px;
 	position: absolute;
 	left: 50%;
 	top: 50%;
 	font-size: 22px;
 	vertical-align: center;
-	transform: translate(0%, -50%);
+	transform: translate(10px, -50%);
+	text-align: left;
 }
 
 .left .image {
-        left: 50%;
-	transform: translate(-10px, 0px);
+	background-position: right center; 	
+	left: auto;
+        right: 0px;
 }
 
 .left .text {
-        left: 0px;
+	left: auto;
+	right: 50%;
+	width: 50%;
+	text-align: right;
+	transform: translate(-10px, 0%);
 }
 
 
