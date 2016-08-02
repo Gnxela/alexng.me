@@ -3,6 +3,10 @@
 	font-family: 'Open Sans Condensed', sans-serif;
 }
 
+.colorChange, .colorChange2{
+	transition: background-color 5s, color 5s;
+}
+
 .frontpage {
 	height: 100%;
 	background-image: url('res/frontpage.jpg');
