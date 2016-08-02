@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	colorChange();
 	setInterval(colorChange, 5000);
 });
 function colorChange() {
