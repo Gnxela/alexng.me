@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	var fps = 30;
 	var frames = 0;
-	var changeTime = 90;//Change time in frames
+	var changeTime = 150;//Change time in frames
 	var ored = 255, ogreen = 250, oblue = 255;//Original values
 	var red = ored, green = ogreen, blue = oblue;//Current values
 	var tred = 25, tgreen = 100, tblue = 255;//Target values
