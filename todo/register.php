@@ -1,10 +1,6 @@
 <?php
 include_once 'php/Database.php';
 
-$database = new Database();
-$database -> readConfig();
-$database -> connect();
-
 $error = "&nbsp;";//Non breaking space
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -29,7 +25,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 			break;
 		}
 
-		//SUCCESS - Continue registering!
+		$database = new Database();
+		$database -> readConfig();
+		$database -> connect();
+		$statement = $database -> prepare("INSERT INTO todo_users (name, password) VALUES (?, ?);");
+		$statement -> bind_param("ss", $username, $password);
+		$statement -> execute();
+		$database -> close();
 	} while(0);//Will run once, and can be broken out of.
 }
 ?>
@@ -42,7 +44,20 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 	<div class="header" align="center">
 		Register
 	</div>
-	<div class="login"><a href="login.php">login</a> / <a href="register.php">register</a></div>
+        <?php
+                if(!isSet($_SESSION['ID'])) {
+                        ?><div class="login"><a href="login.php">login</a> / <a href="register.php">register</a></div><?php
+                } else {
+                        $database = new Database();
+                        $database -> readConfig();
+                        $database -> connect();
+                        $statement =$database -> prepare("SELECT `name` from todo_users WHERE `id`=?");
+                        $statement -> bind_param("i", $_SESSION['ID']);
+                        $statement -> execute();
+                        $name = $statement -> get_result() -> fetch_row()[0];
+                        ?><div class="login"><?php echo $name; ?></div><?php
+                }
+        ?>
 	<div align="center" style="color: red"><?php echo $error ?></div>
 	<form action="register.php" method="post" align="center">
 		<div class="title">Username</div>
