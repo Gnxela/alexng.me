@@ -54,6 +54,6 @@ body {
 }
 
 .task {
-	display: block;
+	display: table;
 	margin-bottom: 3px;
 }
