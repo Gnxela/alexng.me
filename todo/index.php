@@ -28,16 +28,20 @@ session_start();
         ?>
 	<div class="tasks" align="center">
 		<?php
-			$database = new Database();
-                        $database -> readConfig();
-                        $database -> connect();
-                        $statement = $database -> prepare("SELECT * from todo_user_" . $name);
-                        $statement -> execute();
-			$result = $statement -> get_result();
-			while ($row = $result -> fetch_row()) {
-				?><div class="task<?php echo $row[2] == 1 ? ' strike' : ''; ?>"><?php echo $row[1] ?></div><?php
+			 if(isSet($_SESSION['ID'])) {
+				$database = new Database();
+                	        $database -> readConfig();
+                	        $database -> connect();
+                	        $statement = $database -> prepare("SELECT * from todo_user_" . $name);
+                	        $statement -> execute();
+				$result = $statement -> get_result();
+				while ($row = $result -> fetch_row()) {
+					?><div class="task<?php echo $row[2] == 1 ? ' strike' : ''; ?>"><?php echo $row[1] ?></div><?php
+				}
+				$database -> close();
+			} else {
+				?><div class="task">Please log in to see todo items.</div><?php
 			}
-			$database -> close();
 		?>
 	</div>
 </body>
