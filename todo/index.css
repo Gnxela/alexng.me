@@ -57,3 +57,7 @@ body {
 	display: table;
 	margin-bottom: 3px;
 }
+
+.strike {
+	text-decoration: line-through;
+}

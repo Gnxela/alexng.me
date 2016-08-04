@@ -22,12 +22,22 @@ session_start();
                         $statement -> bind_param("i", $_SESSION['ID']);
                         $statement -> execute();
                         $name = $statement -> get_result() -> fetch_row()[0];
-                        ?><div class="login"><?php echo $name; ?></div><?php
+			$database -> close();
+			?><div class="login"><?php echo $name; ?></div><?php
                 }
         ?>
 	<div class="tasks" align="center">
-		<div class="task">Finish website.</div>
-		<div class="task">Get milk.</div>
-		<div class="task">Setp up Git for website.</div>
+		<?php
+			$database = new Database();
+                        $database -> readConfig();
+                        $database -> connect();
+                        $statement = $database -> prepare("SELECT * from todo_user_" . $name);
+                        $statement -> execute();
+			$result = $statement -> get_result();
+			while ($row = $result -> fetch_row()) {
+				?><div class="task<?php echo $row[2] == 1 ? ' strike' : ''; ?>"><?php echo $row[1] ?></div><?php
+			}
+			$database -> close();
+		?>
 	</div>
 </body>

@@ -1,11 +1,11 @@
 $(document).ready(function(){
 	console.log("Loading javascript");
 	$(".task").click(function(e) {
-		if($(this).css("text-decoration") == "line-through") {
-			$(this).css("text-decoration", "none");
+		if($(this).hasClass("strike")) {
+			$(this).removeClass("strike");
 			console.log("Unstriking '" + $(this).text() + "'");
 		} else {
-			$(this).css("text-decoration", "line-through");
+			$(this).addClass("strike");
 			console.log("Striking '" + $(this).text() + "'");
 		}
 	});
