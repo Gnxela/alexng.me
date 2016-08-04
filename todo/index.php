@@ -23,7 +23,7 @@ session_start();
                         $statement -> execute();
                         $name = $statement -> get_result() -> fetch_row()[0];
 			$database -> close();
-			?><div class="login"><?php echo $name; ?></div><?php
+			?><div class="login"><?php echo $name; ?>&nbsp;<a href="/todo/logout.php">(logout)</a></div><?php
                 }
         ?>
 	<div class="tasks" align="center">
@@ -32,12 +32,19 @@ session_start();
 				$database = new Database();
                 	        $database -> readConfig();
                 	        $database -> connect();
-                	        $statement = $database -> prepare("SELECT * from todo_user_" . $name);
+                	        $statement = $database -> prepare("SELECT * from todo_user_" . $name . " WHERE `striked`=0");
                 	        $statement -> execute();
 				$result = $statement -> get_result();
 				while ($row = $result -> fetch_row()) {
-					?><div class="task<?php echo $row[2] == 1 ? ' strike' : ''; ?>"><?php echo $row[1] ?></div><?php
+					?><div class="task"><?php echo $row[1] ?></div><?php
 				}
+				?><input></input><?php
+				$statement = $database -> prepare("SELECT * from todo_user_" . $name . " WHERE `striked`=1");
+                                $statement -> execute();
+                                $result = $statement -> get_result();
+                                while ($row = $result -> fetch_row()) {
+					?><div class="task strike"><?php echo $row[1] ?></div><?php
+                                }
 				$database -> close();
 			} else {
 				?><div class="task">Please log in to see todo items.</div><?php

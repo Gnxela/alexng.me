@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 			$statement -> bind_param("i", $_SESSION['ID']);
 			$statement -> execute();
 			$name = $statement -> get_result() -> fetch_row()[0];
-			?><div class="login"><?php echo $name; ?></div><?php
+                        ?><div class="login"><?php echo $name; ?>&nbsp;<a href="/todo/logout.php">(logout)</a></div><?php
 		}
 	?>
 	<div align="center" style="color: red"><?php echo $error ?></div>
