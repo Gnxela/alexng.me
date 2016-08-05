@@ -35,16 +35,22 @@ session_start();
                 	        $statement = $database -> prepare("SELECT * from todo_user_" . $name . " WHERE `striked`=0");
                 	        $statement -> execute();
 				$result = $statement -> get_result();
+				?><div class="todo"><?php
 				while ($row = $result -> fetch_row()) {
 					?><div class="task"><?php echo $row[1] ?></div><?php
 				}
-				?><input></input><?php
+				?></div>
+
+				<input id="INPUT"></input><?php
+
 				$statement = $database -> prepare("SELECT * from todo_user_" . $name . " WHERE `striked`=1");
                                 $statement -> execute();
                                 $result = $statement -> get_result();
+				?><div class="complete"><?php
                                 while ($row = $result -> fetch_row()) {
 					?><div class="task strike"><?php echo $row[1] ?></div><?php
                                 }
+				?></div><?php
 				$database -> close();
 			} else {
 				?><div class="task">Please log in to see todo items.</div><?php
