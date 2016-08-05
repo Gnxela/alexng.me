@@ -1,6 +1,9 @@
 $(document).ready(function(){
 	console.log("Loading JavaScript.");
 	$(".tasks").on("click", ".task", function(e) {
+		if($(this).hasClass("invincible")) {
+			return;
+		}
 		if($(this).hasClass("strike")) {
 			$(this).removeClass("strike");
 			$(this).detach().appendTo(".todo");

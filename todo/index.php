@@ -53,7 +53,7 @@ session_start();
 				?></div><?php
 				$database -> close();
 			} else {
-				?><div class="task">Please log in to see todo items.</div><?php
+				?><div class="task invincible">Please log in to see todo items.</div><?php
 			}
 		?>
 	</div>
