@@ -22,6 +22,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 		$result = $statement -> get_result();
 		if($result -> num_rows == 1) {
 			$row = $result -> fetch_row();
+			if ($row[2] != $password) {
+				$error = "Credentials not recognised.";
+				$database -> close();
+				break;
+			}
 			$_SESSION['ID'] = $row[0];
 			header("Location: /todo/");
 			die();
