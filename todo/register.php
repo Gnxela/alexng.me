@@ -1,7 +1,7 @@
 <?php
 include_once 'php/Database.php';
 
-$error = "&nbsp;";//Non breaking space
+$error = "&nbsp;";
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
 	do {
@@ -25,14 +25,25 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 			break;
 		}
 
+		$path = dirname(__FILE__) . "/res/todo.conf";
+                $config = fopen($path, "r") or die("Unable to read config file.");
+                $contense = fread($config, filesize($path));
+
+                list($lsalt) = explode("\n", $contense);
+                $salt = explode("=", $lsalt, 2)[1];
+
+		$passwordHash = md5($password . $salt);
+
 		$database = new Database();
 		$database -> readConfig();
 		$database -> connect();
 		$statement = $database -> prepare("INSERT INTO todo_users (name, password) VALUES (?, ?);");
-		$statement -> bind_param("ss", $username, $password);
+		$statement -> bind_param("ss", $username, $passwordHash);
 		$statement -> execute();
+		//Create user table to store todo items.
 		$database -> close();
-	} while(0);//Will run once, and can be broken out of.
+		header("Location: /todo/login.php");
+	} while(0);
 }
 ?>
 <head>

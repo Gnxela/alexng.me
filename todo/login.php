@@ -13,6 +13,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
+		$path = dirname(__FILE__) . "/res/todo.conf";
+                $config = fopen($path, "r") or die("Unable to read config file.");
+                $contense = fread($config, filesize($path));
+
+                list($lsalt) = explode("\n", $contense);
+                $salt = explode("=", $lsalt, 2)[1];
+
+                $passwordHash = md5($password . $salt);
+
+
 		$database = new Database();
 		$database -> readConfig();
 		$database -> connect();
@@ -22,12 +32,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 		$result = $statement -> get_result();
 		if($result -> num_rows == 1) {
 			$row = $result -> fetch_row();
-			if ($row[2] != $password) {
+			if ($row[2] != $passwordHash) {
 				$error = "Credentials not recognised.";
 				$database -> close();
 				break;
 			}
 			$_SESSION['ID'] = $row[0];
+			$database -> close();
 			header("Location: /todo/");
 			die();
 		} else {
