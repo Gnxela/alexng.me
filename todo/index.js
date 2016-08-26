@@ -15,6 +15,8 @@ $(document).ready(function(){
 		}
 	});
 	$("#INPUT").keypress(function (e) {
+		if($(".login").text().indexOf("(logout)") == -1) //Inspect element will kill this, but it's just a basic check.
+			$(this).unbind();
 		if(e.which == 13) {
 			var task = $(this).val();
 			if(task.trim().length == 0)
@@ -22,7 +24,12 @@ $(document).ready(function(){
 			$(".todo").append("<div class=\"task\">" + task + "</div>");
 			$(this).val("");
 			e.preventDefault();
+			var name = $(".login").text().substr(0, $(".login").text().length - 9);
+			$.post("update.php", {name: name, content: task}, function(data) {
+				alert(data);
+			});
 		}
 	});
 	console.log("Finished loading JavaScript.");
+
 });

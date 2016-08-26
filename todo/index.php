@@ -1,6 +1,11 @@
 <?php
 include_once 'php/Database.php';
 session_start();
+
+/*
+	Tecnically, someone could inject SQL through their name.
+*/
+
 ?>
 <head>
 	<link rel="stylesheet" type="text/css" href="index.css">

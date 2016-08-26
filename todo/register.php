@@ -40,7 +40,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 		$statement = $database -> prepare("INSERT INTO todo_users (name, password) VALUES (?, ?);");
 		$statement -> bind_param("ss", $username, $passwordHash);
 		$statement -> execute();
-		//Create user table to store todo items.
+		$statement = $database -> prepare("CREATE TABLE todo_user_" . $username . " (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `value` VARCHAR(255) NOT NULL, `striked` BOOLEAN DEFAULT '0')");
+		$statement -> execute();
 		$database -> close();
 		header("Location: /todo/login.php");
 	} while(0);
