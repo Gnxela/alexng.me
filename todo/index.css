@@ -61,3 +61,12 @@ body {
 .strike {
 	text-decoration: line-through;
 }
+
+#input {
+	background-color: rgb(255, 255, 0);
+	border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+input:focus, select:focus, textarea:focus, button:focus {
+	outline: none;
+}

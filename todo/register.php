@@ -37,11 +37,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 		$database = new Database();
 		$database -> readConfig();
 		$database -> connect();
+
+		$statement = $database -> prepare("SELECT * FROM todo_users WHERE `name`=?");
+		$statement -> bind_param("s", $username);
+		$statement -> execute();
+		if($statement -> get_result() -> num_rows != 0) {
+			$error = "Username already in use.";
+			break;
+		}
+
 		$statement = $database -> prepare("INSERT INTO todo_users (name, password) VALUES (?, ?);");
 		$statement -> bind_param("ss", $username, $passwordHash);
 		$statement -> execute();
+
 		$statement = $database -> prepare("CREATE TABLE todo_user_" . $username . " (`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `value` VARCHAR(255) NOT NULL, `striked` BOOLEAN DEFAULT '0')");
 		$statement -> execute();
+
 		$database -> close();
 		header("Location: /todo/login.php");
 	} while(0);
