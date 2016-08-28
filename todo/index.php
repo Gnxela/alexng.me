@@ -42,7 +42,7 @@ session_start();
 				$result = $statement -> get_result();
 				?><div class="todo"><?php
 				while ($row = $result -> fetch_row()) {
-					?><div class="task"><?php echo $row[1] ?></div><?php
+					?><div <?php echo "id=\"" . $row[0] . "\""; ?> class="task"><?php echo $row[1] ?></div><?php
 				}
 				?></div>
 
@@ -53,7 +53,7 @@ session_start();
                                 $result = $statement -> get_result();
 				?><div class="complete"><?php
                                 while ($row = $result -> fetch_row()) {
-					?><div class="task strike"><?php echo $row[1] ?></div><?php
+					?><div <?php echo "id=\"" . $row[0] . "\""; ?> class="task strike"><?php echo $row[1] ?></div><?php
                                 }
 				?></div><?php
 				$database -> close();

@@ -4,14 +4,24 @@ $(document).ready(function(){
 		if($(this).hasClass("invincible")) {
 			return;
 		}
+		var name = $(".login").text().substr(0, $(".login").text().length - 9);
 		if($(this).hasClass("strike")) {
 			$(this).removeClass("strike");
 			$(this).detach().appendTo(".todo");
 			console.log("Unstriking '" + $(this).text() + "'");
+			$.post("update.php", {mode: "update", name: name, postID: $(this).attr('id'), striked: 0}, function(data) {
+                                if(data.length > 0)
+					alert(data);
+                        });
+
 		} else {
 			$(this).addClass("strike");
 			$(this).detach().prependTo(".complete");
 			console.log("Striking '" + $(this).text() + "'");
+			$.post("update.php", {mode: "update", name: name, postID: $(this).attr('id'), striked: 1}, function(data) {
+                                if(data.length > 0)
+                                	alert(data);
+                        });
 		}
 	});
 	$("#INPUT").keypress(function (e) {
@@ -25,7 +35,7 @@ $(document).ready(function(){
 			$(this).val("");
 			e.preventDefault();
 			var name = $(".login").text().substr(0, $(".login").text().length - 9);
-			$.post("update.php", {name: name, content: task}, function(data) {
+			$.post("update.php", {mode: "add", name: name, content: task}, function(data) {
 				alert(data);
 			});
 		}
