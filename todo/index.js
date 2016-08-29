@@ -31,6 +31,10 @@ $(document).ready(function(){
 			var task = $(this).val();
 			if(task.trim().length == 0)
 				return;
+			if(task.length >= 255) {
+				alert("Maximum length reached (255).");
+				return;
+			}
 			$(".todo").append("<div class=\"task\">" + task + "</div>");
 			$(this).val("");
 			e.preventDefault();

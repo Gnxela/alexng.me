@@ -19,6 +19,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 			}
 			$name = $_POST['name'];
 			$content = $_POST['content'];
+			if(strlen($content) >= 255) {
+				$error = "Maximum length reached (255)."
+				break;
+			}
 			$database = new Database();
 			$database -> readConfig();
 			$database -> connect();
