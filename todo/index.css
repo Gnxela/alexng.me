@@ -54,8 +54,10 @@ body {
 }
 
 .task {
-	display: table;
+	/*display: table;*/
 	margin-bottom: 3px;
+	word-wrap: break-word;
+	max-width: 90%;
 }
 
 .strike {
