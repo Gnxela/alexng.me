@@ -40,7 +40,8 @@ $(document).ready(function(){
 			e.preventDefault();
 			var name = $(".login").text().substr(0, $(".login").text().length - 9);
 			$.post("update.php", {mode: "add", name: name, content: task}, function(data) {
-				alert(data);
+                                if(data.length > 0)
+					alert(data);
 			});
 		}
 	});

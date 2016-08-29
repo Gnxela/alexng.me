@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 			$name = $_POST['name'];
 			$content = $_POST['content'];
 			if(strlen($content) >= 255) {
-				$error = "Maximum length reached (255)."
+				$error = "Maximum length reached (255).";
 				break;
 			}
 			$database = new Database();
@@ -48,7 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 			}
 			$statement -> bind_param("s", $content);
 			$statement -> execute();
-			if($status == false) {
+			if($statement == false) {
                                 $error = "Query failed.";
                         }
 			$database -> close();
