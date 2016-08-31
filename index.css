@@ -3,7 +3,11 @@
 	font-family: 'Open Sans Condensed', sans-serif;
 }
 
-.colorChange, .colorChange2{
+body { 
+	background-color: #f1f1f0;
+}
+
+.colorChange {
 	transition: background-color 5s, color 5s;
 }
 
@@ -38,7 +42,7 @@
 }
 
 .left {
-	background-color: rgba(0, 0, 0, 0.3);
+	background-color: rgba(0, 0, 0, 0.2);
 }
 
 .section .image {
