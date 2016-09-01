@@ -77,32 +77,20 @@ body {
 	left: 50%;
 	top: 50%;
 	font-size: 22px;
-	vertical-align: center;
 	transform: translate(10px, -50%);
 	text-align: left;
-	font-family: Raleway;
+	font-family: "Open Sans Condensed";
 }
-
-.left .image {
-	background-position: right center; 	
-	left: auto;
-        right: 0px;
-}
-
-.left .text {
-	left: auto;
-	right: 50%;
-	width: 50%;
-	text-align: right;
-	transform: translate(-10px, -50%);
-}
-
 
 .section .text h1 {
+	font-family: Raleway;
 	font-weight: 100;
+	letter-spacing: -1px;
 }
 
 .section .text .code {
+	display: inline-block;
+	text-decoration: none;
 	color: #07a1f2;
 }
 
@@ -110,10 +98,51 @@ body {
 	content: 'code </>'
 }
 
-.section .text a {
-	text-decoration: none;
+.left .text {
+        left: auto;
+        right: 50%;
+        width: 50%;
+        text-align: right;
+        transform: translate(-10px, -50%);
+}
+
+.left .image {
+        background-position: right center;
+        left: auto;
+        right: 0px;
+}
+
+.button {
 	color: black;
+	font-family: Raleway;
 	font-weight: 700;
-	border-bottom: 1px solid black;
-	line-height: 12px;
+	position: relative;
+	top: 10px;/* Fix off centering */
+	display: inline-block;
+	padding: 5px 10px 5px 12px;
+	border: 1px solid #b1b1b1;
+	overflow: hidden;
+	transition: 1s all;
+}
+
+.button::after {
+	background-color: #07a1f2;
+	display: inline-block;
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	transform-origin: center;
+	transform: rotate(45deg) translate(-18%, 0);
+	content: ' ';
+	z-index: -1;
+	transition: .6s all;
+}
+
+.button:hover::after {
+        transform-origin: center;
+	transform: rotate(45deg) translate(-33%, 0);
+}
+
+.button:hover {
+	color: white;
 }
