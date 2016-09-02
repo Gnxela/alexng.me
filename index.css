@@ -129,10 +129,12 @@ body {
 	background-color: #07a1f2;
 	display: inline-block;
 	position: absolute;
-	width: 500px;
+	top: -50px;
+	left: -50px;
+	width: 100px;
 	height: 500px;
 	transform-origin: center;
-	transform: rotate(45deg) translate(-18%, 0);
+	transform: rotate(45deg);
 	content: ' ';
 	z-index: -1;
 	transition: .6s all;
@@ -140,7 +142,8 @@ body {
 
 .button:hover::after {
         transform-origin: center;
-	transform: rotate(45deg) translate(-33%, 0);
+	width: 630px;
+	transform: rotate(45deg);
 }
 
 .button:hover {
