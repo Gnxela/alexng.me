@@ -6,6 +6,12 @@ body {
 	background-color: #f1f1f0;
 }
 
+h1, h2, h3 {
+	font-family: Raleway;
+	font-weight: 100;
+	letter-spacing: -1px;
+}
+
 .colorChange {
 	transition: background-color 5s, color 5s;
 }
@@ -39,10 +45,47 @@ body {
 	display: block;
 	overflow: hidden;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.5);	
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.about-me {
+	font-size: 1.2em;
+	font-family: "Open Sans Condensed";
+	padding-bottom: 20px;
+}
+
+.about-me h1 {
+	padding-top: 15px;
+	font-size: 2.5em;
+}
+
+.about-me .languages {
+	display: inline-block;
+	position : relative;
+	padding: 0px;
+	width: 100%;
+}
+
+.about-me .progress-container {
+	display: inline-block;
+	position: relative;	
+	width: 39%;
+	height: 25px;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	border-radius: 3px;
+	margin: 10px;
+}
+
+.about-me .progress-container .progress {
+	position: absolute;
+	bottom: 0px;
+	float: left;
+	background-color: rgba(0, 0, 0, 0.3);
+	height: 100%;
 }
 
 .left {
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.0);
 }
 
 .section .image {
@@ -82,12 +125,6 @@ body {
 	font-family: "Open Sans Condensed";
 }
 
-.section .text h1 {
-	font-family: Raleway;
-	font-weight: 100;
-	letter-spacing: -1px;
-}
-
 .section .text .code {
 	display: inline-block;
 	text-decoration: none;
@@ -99,17 +136,17 @@ body {
 }
 
 .left .text {
-        left: auto;
-        right: 50%;
-        width: 50%;
-        text-align: right;
-        transform: translate(-10px, -50%);
+	left: auto;
+	right: 50%;
+	width: 50%;
+	text-align: right;
+	transform: translate(-10px, -50%);
 }
 
 .left .image {
-        background-position: right center;
-        left: auto;
-        right: 0px;
+	background-position: right center;
+	left: auto;
+	right: 0px;
 }
 
 .button {
@@ -141,7 +178,7 @@ body {
 }
 
 .button:hover::after {
-        transform-origin: center;
+	transform-origin: center;
 	width: 630px;
 	transform: rotate(45deg);
 }
