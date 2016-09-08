@@ -16,6 +16,10 @@ h1, h2, h3 {
 	transition: background-color 5s, color 5s;
 }
 
+.inline-container {
+	display: inline-block;
+}
+
 .frontpage {
 	height: 100%;
 	background-image: url('res/frontpage.jpg');
@@ -44,14 +48,13 @@ h1, h2, h3 {
 	height: 400px;
 	display: block;
 	overflow: hidden;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.5);	
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);	
 	background-color: rgba(0, 0, 0, 0.2);
 }
 
 .about-me {
 	font-size: 1.2em;
 	font-family: "Open Sans Condensed";
-	padding-bottom: 20px;
 }
 
 .about-me h1 {
@@ -71,7 +74,8 @@ h1, h2, h3 {
 	position: relative;	
 	width: 39%;
 	height: 25px;
-	border: 1px solid rgba(0, 0, 0, 0.5);
+	line-height: 23px;
+	border: 1px solid rgba(0, 0, 0, 0.3);
 	border-radius: 3px;
 	margin: 10px;
 }
@@ -80,9 +84,69 @@ h1, h2, h3 {
 	position: absolute;
 	bottom: 0px;
 	float: left;
-	background-color: rgba(0, 0, 0, 0.3);
+	background-color: rgba(25, 100, 255, 0.3);
 	height: 100%;
+	z-index: -1;
 }
+
+
+
+.about-me .progress-container-circle {
+	position: relative;
+	display: inline-block;
+	margin: 10px;
+	width: 150px;
+	height: 150px;
+	display: table;
+	line-height: 50%;
+	background-color: #07a1f2;
+	border-radius: 50%;
+	z-index: -2;
+	overflow: hidden;
+}
+
+.about-me .progress-container-circle .fill {
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 144px;
+	height: 144px;
+        background-color: #f1f1f0;
+        border-radius: 50%;
+	z-index: -1;
+}
+
+.about-me .progress-container-circle .wedge {
+	position: absolute;
+	content: ' ';
+        top: -5px;
+        left: -5px;
+        width: 80px;
+        height: 160px;
+	padding-right: 80px;
+        background-color: rgb(193, 193, 192);
+	transform-origin: center;
+	z-index: -2;
+	transform: rotate(0deg);
+	background-clip: content-box;
+}
+
+.about-me .progress-container-circle .reset {
+        background-color: #07a1f2;
+}
+
+.about-me .progress-container-circle right {
+	padding-right: 0px;
+	padding-left: 80px;
+}
+
+.about-me .progress-container-circle span {
+	display: table-cell;
+	vertical-align: middle;
+	line-height: normal;      
+}
+
+
 
 .left {
 	background-color: rgba(0, 0, 0, 0.0);
@@ -157,7 +221,7 @@ h1, h2, h3 {
 	top: 10px;/* Fix off centering */
 	display: inline-block;
 	padding: 5px 10px 5px 12px;
-	border: 1px solid #b1b1b1;
+	border: 1px solid rgba(0, 0, 0, 0.3);
 	overflow: hidden;
 	transition: 1s all;
 }
