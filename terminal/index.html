@@ -24,7 +24,10 @@
 	<script>
 		$(document).ready(function() {
 			$.getScript('handler.js', function() {
-				var console = new Console($(".console"));
+				var con = new Console($(".console"));
+				con.pushOutput("Welcome. Type ? or 'help' for a list of commands.");
+				con.pushNewLine();
+				con.pushBash();
 			});
 		});
 	</script>
