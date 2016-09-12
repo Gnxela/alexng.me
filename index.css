@@ -175,7 +175,8 @@ h1, h2, h3 {
 
 
 .section .image img:hover  {
-	transform: scale(1.05) translate(-47.5%, -47.25%);
+	max-width: 95%;
+	max-height: 95%;
 	transform-origin: center;
 }
 
