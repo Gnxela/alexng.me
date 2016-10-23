@@ -1,3 +1,8 @@
+@font-face {
+	font-family: 'Blokk';
+	src: url('res/BLOKKNeue-Regular.ttf ');
+}
+
 * {
 	margin: 0px;
 }
@@ -146,8 +151,6 @@ h1, h2, h3 {
 	line-height: normal;      
 }
 
-
-
 .left {
 	background-color: rgba(0, 0, 0, 0.0);
 }
@@ -250,4 +253,15 @@ h1, h2, h3 {
 
 .button:hover {
 	color: white;
+}
+
+block {
+	font-family: Blokk;
+	word-spacing: -0.9em;
+	letter-spacing: -1px;	
+	color: rgb(20, 20, 20);
+}
+
+h1 block, block h1 {
+	font-size: 2em;
 }
