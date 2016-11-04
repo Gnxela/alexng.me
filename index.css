@@ -49,7 +49,7 @@ body {
 }
 
 .tile:hover > .overlay {
-	background-color: rgba(25, 100, 255, .4);
+	background-color: rgba(25, 100, 255, .35);
 }
 
 .title {
