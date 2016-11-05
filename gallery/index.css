@@ -1,6 +1,7 @@
 * {
 	padding: 0px;
 	margin: 0px;
+	font-family: "Open Sans Condensed";
 }
 
 body {
@@ -19,5 +20,31 @@ body {
 	width: 100%;
 	margin-top: -5px;
 	font-size: 1.75em;
-	font-family: "Open Sans Condensed";
+}
+
+.gallery-container {
+	padding-top: 15px;
+}
+
+.gallery-container .section {
+	padding: 0px 10px 0px 10px;
+}
+
+.gallery-container .section .title {
+	font-size: 1.5em;
+}
+
+.gallery-container .section .title:before {
+	content: '//';
+	padding-right: 10px;
+}
+
+.gallery-container .section .photos {
+	padding: 10px 25px 0px 25px;
+	text-align: center;
+}
+
+.gallery-container .section .photos img {
+	max-width: 300px;
+	max-height: 300px;
 }
