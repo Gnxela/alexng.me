@@ -27,11 +27,16 @@ body {
 }
 
 .gallery-container .section {
-	padding: 0px 10px 0px 10px;
+	padding: 30px 10px 0px 10px;
+}
+
+.gallery-container .section:first-child {
+	padding-top: 0px;
 }
 
 .gallery-container .section .title {
-	font-size: 1.5em;
+	font-size: 2em;
+	display: inline;
 }
 
 .gallery-container .section .title:before {
@@ -39,12 +44,31 @@ body {
 	padding-right: 10px;
 }
 
+.gallery-container .section .desc {
+	color: #1299ff;
+	display: inline-block;
+	height: 35px;
+	vertical-align: middle;
+}
+
+.gallery-container .section .desc:before {
+	content: '//';
+	padding: 0px 10px 0px 10px;
+}
+
 .gallery-container .section .photos {
-	padding: 10px 25px 0px 25px;
+	padding: 0px 25px 0px 25px;
 	text-align: center;
 }
 
 .gallery-container .section .photos img {
 	max-width: 300px;
 	max-height: 300px;
+	padding: 11px 11px 11px 11px;
+	transition: 0.5s all;
+}
+
+.gallery-container .section .photos img:hover {
+        transform-origin: center;
+        transform: scale(1.05);	
 }
