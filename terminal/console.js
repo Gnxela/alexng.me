@@ -15,7 +15,7 @@ var Console = function (div) {
 	var self = this;//Must be used when scope is changed
 
 	this.caretPosition = 0;
-	this.caretBlink = true;
+	this.caretBlink = false;
 	this.caretTicks = 1;
 	this.caretBlinkTime = 16;
 
@@ -58,11 +58,16 @@ var Console = function (div) {
 
 	console.log("Initialing caret");
 	var updateCaretTimer = function() {
-		self.caretTicks = self.caretTicks + 1;
-		if(self.caretTicks > self.caretBlinkTime) {
-			self.caretTicks = 0;
-			self.caretBlink = !self.caretBlink;
-			updateCaret()
+		if($(".console-input-textarea").is(":focus")) {
+			self.caretTicks = self.caretTicks + 1;
+			if(self.caretTicks > self.caretBlinkTime) {
+				self.caretTicks = 0;
+				self.caretBlink = !self.caretBlink;
+				updateCaret()
+			}
+		} else if(self.caretBlink) {
+			self.caretBlink = false;
+			updateCaret();
 		}
 	}
 	var caretTimer = setInterval(updateCaretTimer, 50);
@@ -131,7 +136,7 @@ var Console = function (div) {
 	}
 
 	var updateCaret = function() {
-		if(self.caretPosition < 0) {
+		if(self.caretPosition < 0) {//Change to clamp?
 			self.caretPosition = 0;
 		}
 		if(self.caretPosition > $(".console-input").text().length) {
@@ -140,7 +145,7 @@ var Console = function (div) {
 		var caret = $(".caret");
 		caret.css("opacity", (self.caretBlink ? 1 : 0))
 		caret.css("left", (self.caretPosition * 7 + 7))
-		caret.text(getInput().charAt(self.caretPosition))//If the caret is over a character, it must be displayed on top on the caret.
+		caret.text(getInput().charAt(self.caretPosition))//If the caret is over a character, it must be displayed on top of the caret.
 		caret.css("color", $(".console").css("background-color"));
 	}
 
@@ -174,6 +179,10 @@ var Console = function (div) {
 	div.html("<div class=\"console-input-container\"><div class=\"caret\" style=\"position: absolute; top: 0px; left: 7px;\"></div><div class=\"console-input\"></div></div></div><textarea class=\"console-input-textarea\" id=\"input\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\"></textarea></div></div>");
 
 	console.log("Creating event handlers.");
+	$(".console-input-textarea").focus(function(e) {
+		bumpCaret();
+		updateCaret();
+	});
 	$(".console-input-textarea").keypress(function(e) {
 		switch(e.which) {
 			case 13:
