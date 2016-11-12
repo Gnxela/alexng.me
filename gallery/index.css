@@ -22,73 +22,50 @@ body {
 	font-size: 1.75em;
 }
 
-.gallery-container {
-	padding-top: 15px;
-}
-
-.gallery-container .section {
-	padding: 30px 10px 0px 10px;
-}
-
-.gallery-container .section:first-child {
-	padding-top: 0px;
-}
-
-.gallery-container .section .title {
-	font-size: 2em;
-	display: inline;
-}
-
-.gallery-container .section .title:before {
-	content: '//';
-	padding-right: 10px;
-}
-
-.gallery-container .section .desc {
-	color: #1299ff;
-	display: inline-block;
-	height: 35px;
-	vertical-align: middle;
-}
-
-.gallery-container .section .desc:before {
-	content: '//';
-	padding: 0px 10px 0px 10px;
-}
-
-.gallery-container .section .photos {
-	padding: 0px 25px 0px 25px;
+.overlay {
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: rgba(0, 0, 0, 0.4);
+	width: 100%;
+	min-height: 100%;
+	transition: all 1s;
 	text-align: center;
 }
 
-.gallery-container .section .photos img {
-	max-width: 300px;
-	max-height: 300px;
-	margin: 11px 11px 11px 11px;
-	transition: 0.5s all;
+.gallery-container {
+	padding-top: 15px;
+	text-align: center;
 }
 
-.gallery-container .section .photos img:hover {
-        transform-origin: center;
-        transform: scale(1.05);	
+.album {
+	position: relative;
+	width: 375px;
+	height: 400px;
+	display: inline-block;
+	cursor: pointer;
 }
 
-.test {
+.album .polaroid{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.polaroid {
 	margin: 20px 10px 10px 30px;
 	display: inline-block;
 	height: 370px;
 	width: 320px;
 	background-color: white;
+	transition: all 1s;
+	text-aign: center;
 }
 
-.gallery-container .section .photos img {
-        max-width: 300px;
-        max-height: 300px;
-        margin: 11px 11px 11px 11px;
-        transition: 0.5s all;
+.polaroid img {
+	max-width: 300px;
+	max-height: 300px;
+	margin: 11px 11px 11px 11px;
+	transition: 0.5s all;
 }
-
-.gallery-container .section .photos .test img:hover {
-	transform: none;
-}
-

@@ -9,52 +9,89 @@
 		<div class="title">Gallery</div>
 	</div>
 	<!-- Hardcoding in to get format, will redo dynamically when I have it looking nice -->
-	<div class="gallery-container">
-		<div class="section">
-                        <div class="title">Test</div>
-                        <div class="desc">Testing stuff here!</div>
-                        <div class="photos">
-				<div class="test">
-                                	<img src="../res/portfolio.png" />
-					<h2>Me and the lads in Galway</h2>
-				</div>
-                                <div class="test">
-                                        <img src="../res/portfolio.png" />
-                                        <h2>Me and the lads in Galway</h2>
-                                </div>
-                                <div class="test">
-                                        <img src="../res/portfolio.png" />
-                                        <h2>Me and the lads in Galway</h2>
-                                </div>
+	<div class="overlay">
 
-                        </div>
-                </div>
-		<div class="section">
-			<div class="title">Section #1</div>
-			<div class="desc">Testing stuff here!</div>
-			<div class="photos">
+	</div>
+	<div class="gallery-container">
+		<div class="album">
+			<div class="polaroid">
 				<img src="../res/portfolio.png" />
+				<h2>Me and the lads in Galway</h2>
+			</div>
+			<div class="polaroid">
 				<img src="../res/portfolio.png" />
+				<h2>Me and the lads in Galway</h2>
+			</div>
+			<div class="polaroid">
 				<img src="../res/portfolio.png" />
-				<img src="../res/portfolio.png" />
-				<img src="../res/portfolio.png" />
+				<h2>Me and the lads in Galway</h2>
 			</div>
 		</div>
-		<div class="section">
-                        <div class="title">Section #2</div>
-			<div class="desc">Testing stuff here!</div>
-                        <div class="photos">
+		<div class="album">
+                        <div class="polaroid">
                                 <img src="../res/portfolio.png" />
-                                <img src="../res/portfolio.png" />
-                                <img src="../res/portfolio.png" />
+                                <h2>Me and the lads in Galway</h2>
                         </div>
+                        <div class="polaroid">
+                                <img src="../res/portfolio.png" />
+                                <h2>Me and the lads in Galway</h2>
+                        </div>
+                        <div class="polaroid">
+                                <img src="../res/portfolio.png" />
+                                <h2>Me and the lads in Galway</h2>
+                        </div>
+                        <div class="polaroid">
+                                <img src="../res/portfolio.png" />
+                                <h2>Me and the lads in Galway</h2>
+                        </div>
+                        <div class="polaroid">
+                                <img src="../res/portfolio.png" />
+                                <h2>Me and the lads in Galway</h2>
+                        </div>
+                        <div class="polaroid">
+                                <img src="../res/portfolio.png" />
+                                <h2>Me and the lads in Galway</h2>
+                        </div>
+                        <div class="polaroid">
+                                <img src="../res/portfolio.png" />
+                                <h2>Me and the lads in Galway</h2>
+                        </div>
+                        <div class="polaroid">
+                                <img src="../res/portfolio.png" />
+                                <h2>Me and the lads in Galway</h2>
+                        </div>
+                        <div class="polaroid">
+                                <img src="../res/portfolio.png" />
+                                <h2>Me and the lads in Galway</h2>
+                        </div>
+                        <div class="polaroid">
+                                <img src="../res/portfolio.png" />
+                                <h2>Me and the lads in Galway</h2>
+                        </div>
+                        <div class="polaroid">
+                                <img src="../res/portfolio.png" />
+                                <h2>Me and the lads in Galway</h2>
+                        </div>
+                        <div class="polaroid">
+                                <img src="../res/portfolio.png" />
+                                <h2>Me and the lads in Galway</h2>
+                        </div>
+
                 </div>
 	</div>
 </body>
 <script>
 $(document).ready(function() {
-	$(".test").each(function() {
+	$(".polaroid").each(function() {
 		$(this).css("transform", "rotate(" + (Math.floor((Math.random() * 10) -4)) + "deg)");
+	});
+	$(".album").click(function() {
+		$(".overlay").append($(this).children().clone());
+		$(".overlay").css({"display": "block", "z-index": 1});
+	});
+	$(".overlay").click(function() {
+		$(this).empty();
+		$(this).css({"display": "none", "z-index": -1});		
 	});
 });
 </script>
