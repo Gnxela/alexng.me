@@ -30,7 +30,6 @@ body {
 	background-color: rgba(0, 0, 0, 0.4);
 	width: 100%;
 	min-height: 100%;
-	transition: all 1s;
 	text-align: center;
 }
 
@@ -51,6 +50,7 @@ body {
 	position: absolute;
 	top: 0px;
 	left: 0px;
+	transition: all 1s;
 }
 
 .polaroid {
@@ -59,13 +59,12 @@ body {
 	height: 370px;
 	width: 320px;
 	background-color: white;
-	transition: all 1s;
-	text-aign: center;
+	text-align: center;
+	border: 1px solid rgba(0, 0, 0, 0.3)
 }
 
 .polaroid img {
 	max-width: 300px;
 	max-height: 300px;
 	margin: 11px 11px 11px 11px;
-	transition: 0.5s all;
 }
