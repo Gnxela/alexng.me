@@ -1,6 +1,7 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Raleway:300" rel="stylesheet">
+	<script src="jquery-3.0.0.min.js"></script>
 	<title>Alex Ng / Gallery</title>
 </head>
 <body>
@@ -9,6 +10,25 @@
 	</div>
 	<!-- Hardcoding in to get format, will redo dynamically when I have it looking nice -->
 	<div class="gallery-container">
+		<div class="section">
+                        <div class="title">Test</div>
+                        <div class="desc">Testing stuff here!</div>
+                        <div class="photos">
+				<div class="test">
+                                	<img src="../res/portfolio.png" />
+					<h2>Me and the lads in Galway</h2>
+				</div>
+                                <div class="test">
+                                        <img src="../res/portfolio.png" />
+                                        <h2>Me and the lads in Galway</h2>
+                                </div>
+                                <div class="test">
+                                        <img src="../res/portfolio.png" />
+                                        <h2>Me and the lads in Galway</h2>
+                                </div>
+
+                        </div>
+                </div>
 		<div class="section">
 			<div class="title">Section #1</div>
 			<div class="desc">Testing stuff here!</div>
@@ -31,3 +51,10 @@
                 </div>
 	</div>
 </body>
+<script>
+$(document).ready(function() {
+	$(".test").each(function() {
+		$(this).css("transform", "rotate(" + (Math.floor((Math.random() * 10) -4)) + "deg)");
+	});
+});
+</script>

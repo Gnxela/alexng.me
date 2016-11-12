@@ -64,7 +64,7 @@ body {
 .gallery-container .section .photos img {
 	max-width: 300px;
 	max-height: 300px;
-	padding: 11px 11px 11px 11px;
+	margin: 11px 11px 11px 11px;
 	transition: 0.5s all;
 }
 
@@ -72,3 +72,23 @@ body {
         transform-origin: center;
         transform: scale(1.05);	
 }
+
+.test {
+	margin: 20px 10px 10px 30px;
+	display: inline-block;
+	height: 370px;
+	width: 320px;
+	background-color: white;
+}
+
+.gallery-container .section .photos img {
+        max-width: 300px;
+        max-height: 300px;
+        margin: 11px 11px 11px 11px;
+        transition: 0.5s all;
+}
+
+.gallery-container .section .photos .test img:hover {
+	transform: none;
+}
+
