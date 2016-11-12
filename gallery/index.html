@@ -82,42 +82,61 @@
 <script>
 $(document).ready(function() {
 	$(".polaroid").each(function() {
-		$(this).css({"transform" : "rotate(" + (Math.floor((Math.random() * 10) -4)) + "deg)"});
 		$(this).css("margin-left", function (index, curValue) {
 			return parseInt(curValue, 10) + (Math.floor(Math.random() * 20) - 9) + 'px';
 		});
 		$(this).css("margin-top", function (index, curValue) {
                         return parseInt(curValue, 10) + (Math.floor(Math.random() * 20) - 9) + 'px';
                 });
+		var original = $(this).offset();
+		$(this).css({"transform" : "rotate(" + (Math.floor((Math.random() * 10) -4)) + "deg)"});
+		var rotated = $(this).offset();
+		$(this).data({
+			dx: rotated.left - original.left,
+			dy: rotated.top - original.top
+		});
 	});
 	$(".album").click(function() {
-		//$(".overlay").append($(this).clone());
-		//$(".overlay").find(".album").contents().unwrap();
-		$(".overlay").css({"display": "block", "z-index": 1});
-		
-		var total = 0;
+		$(this).addClass("open");
+		$(".overlay").css({"display": "block"});
 		$(this).children(".polaroid").each(function(index) {//Add all the images first as to get correct positions
-			var $old = $(this);
-			var $new = $old.clone().attr("id", index).appendTo('.overlay');
-			$new.css("opacity", 0);
+			var old = $(this);
+			var neww = old.clone().attr("id", index).appendTo('.overlay');
+			neww.css("opacity", 0);
 		});
 		$(this).children(".polaroid").each(function(index) {
-			var $old = $(this);
-			var $new = $(".overlay").find("#" + index);
-			var newOffset = $new.offset();
-			var oldOffset = $old.offset();
-			var $temp = $old.clone().appendTo('body');
-			$temp.css('position', 'absolute').css('left', oldOffset.left).css('top', oldOffset.top).css('z-index', 1000);
-			$temp.animate({'top': newOffset.top, 'left': newOffset.left}, 600, function() {
-				$new.css("opacity", 1);
-				//$temp.remove();
-				$temp.css("background-color", "red");
+			var old = $(this);
+			var neww = $(".overlay").find("#" + index);
+			var newOffset = neww.offset();
+			var oldOffset = old.offset();
+			var temp = old.clone().appendTo('body');
+			temp.css('position', 'absolute').css('left', oldOffset.left - old.data('dx') - parseInt($(this).css("margin-left"))).css('top', oldOffset.top - old.data('dy') - parseInt($(this).css("margin-top"))).css('z-index', 1000);
+			old.css("opacity", 0);
+			temp.animate({'top': newOffset.top - old.data('dy') - parseInt($(this).css("margin-top")), 'left': newOffset.left - old.data('dx') - parseInt($(this).css("margin-left"))}, 600, function() {
+				neww.css("opacity", 1);
+				temp.remove();
 			});
 		});
 	});
 	$(".overlay").click(function() {
-		$(this).empty();
-		$(this).css({"display": "none", "z-index": -1});		
+		var album = $(".album.open");
+		album.removeClass("open");
+                $(this).children(".polaroid").each(function(index) {
+                        var old = $(this);
+                        var neww = album.children(".polaroid:eq(" + index + ")");
+                        var newOffset = neww.offset();
+                        var oldOffset = old.offset();
+			console.log(newOffset);
+			console.log(oldOffset);
+                        var temp = neww.clone().appendTo('body').css("opacity", 1);
+			temp.css('position', 'absolute').css('left', oldOffset.left - neww.data('dx')).css('top', oldOffset.top - neww.data('dy')).css('z-index', index);
+                        temp.animate({'top': newOffset.top - neww.data('dy'), 'left': newOffset.left - neww.data('dx')}, 600, function() {
+                                neww.css("opacity", 1);
+                                old.remove();
+				temp.remove();
+                        });
+                });
+		$(".overlay").css({"display": "none"});
 	});
 });
 </script>
