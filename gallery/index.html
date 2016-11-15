@@ -126,11 +126,9 @@ $(document).ready(function() {
                         var neww = album.children(".polaroid:eq(" + index + ")");
                         var newOffset = neww.offset();
                         var oldOffset = old.offset();
-			console.log(newOffset);
-			console.log(oldOffset);
                         var temp = neww.clone().appendTo('body').css("opacity", 1);
-			temp.css('position', 'absolute').css('left', oldOffset.left - neww.data('dx')).css('top', oldOffset.top - neww.data('dy')).css('z-index', index);
-                        temp.animate({'top': newOffset.top - neww.data('dy'), 'left': newOffset.left - neww.data('dx')}, 600, function() {
+			temp.css('position', 'absolute').css('left', oldOffset.left - neww.data('dx') - parseInt($(this).css("margin-left"))).css('top', oldOffset.top - neww.data('dy') - parseInt($(this).css("margin-top"))).css('z-index', index);
+                        temp.animate({'top': newOffset.top - neww.data('dy') - parseInt($(this).css("margin-top")), 'left': newOffset.left - neww.data('dx') - parseInt($(this).css("margin-left"))}, 600, function() {
                                 neww.css("opacity", 1);
                                 old.remove();
 				temp.remove();
