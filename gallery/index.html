@@ -70,11 +70,11 @@
                         </div>
                         <div class="polaroid">
                                 <img src="../res/portfolio.png" />
-                                <h2>Me and the lads in Galway</h2>
+                                <h2>#1</h2>
                         </div>
                         <div class="polaroid">
                                 <img src="../res/portfolio.png" />
-                                <h2>Me and the lads in Galway</h2>
+                                <h2>Cover</h2>
                         </div>
                 </div>
 	</div>
@@ -101,7 +101,7 @@ $(document).ready(function() {
 		$(".overlay").css({"display": "block"});
 		$(this).children(".polaroid").each(function(index) {//Add all the images first as to get correct positions
 			var old = $(this);
-			var neww = old.clone().attr("id", index).appendTo('.overlay');
+			var neww = old.clone().attr("id", index).prependTo('.overlay');
 			neww.css("opacity", 0);
 		});
 		$(this).children(".polaroid").each(function(index) {
@@ -121,7 +121,7 @@ $(document).ready(function() {
 	$(".overlay").click(function() {
 		var album = $(".album.open");
 		album.removeClass("open");
-                $(this).children(".polaroid").each(function(index) {
+                $($(this).children(".polaroid").get().reverse()).each(function(index) {
                         var old = $(this);
                         var neww = album.children(".polaroid:eq(" + index + ")");
                         var newOffset = neww.offset();
