@@ -54,6 +54,7 @@ body {
 }
 
 .polaroid {
+	opacity: 0;
 	margin: 20px 10px 10px 30px;
 	display: inline-block;
 	height: 370px;

@@ -95,6 +95,7 @@ $(document).ready(function() {
 			dx: rotated.left - original.left,
 			dy: rotated.top - original.top
 		});
+		$(this).css("opacity", 1);
 	});
 	$(".album").click(function() {
 		$(this).addClass("open");
