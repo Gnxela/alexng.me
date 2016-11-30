@@ -19,22 +19,20 @@ var Console = function (div) {
 	this.caretTicks = 1;
 	this.caretBlinkTime = 16;
 
-	this.user = null;
-	this.path = "~"
-
 	this.commandHistory = new Array();
 	this.currentCommand = "";
 	this.commandPosition = 0;
 	this.commandHandlers = new Array();
+	this.callback = null;
 
 	/* Methods */
 
-	this.pushNewLine = function() {
-		$(".console-input-container").before("<br>");
+	this.setCallback = function(callback) {
+		self.callback = callback;
 	}
 
-	this.pushBash = function() {
-		$(".console-input-container").before(">");
+	this.pushNewLine = function() {
+		$(".console-input-container").before("<br>");
 	}
 
 	this.pushOutput = function(output) {
@@ -43,13 +41,10 @@ var Console = function (div) {
 
 	var pushInput = function(input) {
 		console.log("'" + input + "' was pushed.");
-		$(".console-input-container").before(" " + input)// Insert input into output 
-
 		clearInput();
 		addCommandToHistory(input);
-		self.pushNewLine();
-		self.pushBash();
 		scrollToBottom();
+		self.callback(input);
 	}
 
 	var scrollToBottom = function() {
@@ -144,36 +139,12 @@ var Console = function (div) {
 		}
 		var caret = $(".caret");
 		caret.css("opacity", (self.caretBlink ? 1 : 0))
-		caret.css("left", (self.caretPosition * 7 + 7))
+		caret.css("left", (self.caretPosition * 7))
 		caret.text(getInput().charAt(self.caretPosition))//If the caret is over a character, it must be displayed on top of the caret.
 		caret.css("color", $(".console").css("background-color"));
 	}
 
 	/* Initialisation */
-
-	console.log("Loading saved data.");
-	if(document.cookie.length != 0) {
-		console.log("Raw cookies: '" + document.cookie + "'.");
-		var cookieArray = document.cookie.split(";");
-		for(var i = 0; i < cookieArray.length; i++) {
-			var name = cookieArray[i].split("=")[0];
-			var value = cookieArray[i].split("=")[1];
-
-			switch(name) {
-				case "user":
-					self.user = value;
-					break;
-				default:
-					console.log("An unknown cookie was read.");
-					break;
-			}
-
-			console.log("Read cookie '" + name + "' with value '" + value + "'.")
-		}
-	} else {
-		console.log("No save data found. Setting defaults.");
-		self.user = "guest";
-	}
 
 	console.log("Injecting console into div.")
 	div.html("<div class=\"console-input-container\"><div class=\"caret\" style=\"position: absolute; top: 0px; left: 7px;\"></div><div class=\"console-input\"></div></div></div><textarea class=\"console-input-textarea\" id=\"input\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\"></textarea></div></div>");
