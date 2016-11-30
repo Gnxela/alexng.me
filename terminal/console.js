@@ -204,5 +204,4 @@ var Console = function (div) {
 				break;
 		}
 	});
-	createHandlers(self.commandHandlers);
 }
