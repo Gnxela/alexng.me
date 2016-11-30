@@ -23,23 +23,21 @@
 	</div>
 	<script>
 		$(document).ready(function() {
-			$.getScript('handler.js', function() {
-				var callback = function(input) {
-					con.pushOutput(input);
-					con.pushNewLine();
-					if(input == "Hello World!") {
-						con.pushOutput("A brave new world this is!");
-						con.pushNewLine();
-					}
-					con.pushOutput("> ");
-				}
-
-				var con = new Console($(".console"));
-				con.setCallback(callback);
-				con.pushOutput("Welcome. Type ? or 'help' for a list of commands.");
+			var callback = function(input) {
+				con.pushOutput(input);
 				con.pushNewLine();
+				if(input == "Hello World!") {
+					con.pushOutput("A brave new world this is!");
+					con.pushNewLine();
+				}
 				con.pushOutput("> ");
-			});
+			}
+
+			var con = new Console($(".console"));
+			con.setCallback(callback);
+			con.pushOutput("Welcome. Type ? or 'help' for a list of commands.");
+			con.pushNewLine();
+			con.pushOutput("> ");
 		});
 	</script>
 </body>
