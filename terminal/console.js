@@ -68,7 +68,9 @@ var Console = function (div) {
 	var caretTimer = setInterval(updateCaretTimer, 50);
 
 	var addCommandToHistory = function(command) {
+		self.currentCommand = "";
 		self.commandHistory.push(command);
+		self.commandPosition = 0;
 	}
 
 	var commandUp = function() {
