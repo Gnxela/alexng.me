@@ -30,6 +30,9 @@
 					if(input == "Hello World!") {
 						con.pushOutput("A brave new world this is!");
 						con.pushNewLine();
+					} else if(input.toLowerCase() == "?" || input.toLowerCase() == "help") {
+						con.pushOutput("Visit http://www.github.com/Gnxela/alexng.me for more information.");
+						con.pushNewLine();
 					}
 					con.pushOutput("> ");
 				}
