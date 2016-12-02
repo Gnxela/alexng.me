@@ -33,6 +33,9 @@
 					} else if(input.toLowerCase() == "?" || input.toLowerCase() == "help") {
 						con.pushOutput("Visit http://www.github.com/Gnxela/alexng.me for more information.");
 						con.pushNewLine();
+					} else {
+						con.pushOutput("Unknown command.");
+						con.pushNewLine();
 					}
 					con.pushOutput("> ");
 				}
