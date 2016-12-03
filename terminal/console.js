@@ -50,6 +50,7 @@ var Console = function (div) {
 	this.pushOutput = function(output) {
 		styles = "color: " + self.forgroundColor.toString(16) + "; background-color: " + self.backgroundColor.toString(16) + ";"
 		$(".console-input-container").before("<span style=\"" + styles + "\">" + output + "</span>");
+		scrollToBottom();
 	}
 
 	var pushInput = function(input) {

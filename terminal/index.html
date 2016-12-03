@@ -31,7 +31,11 @@
 						con.pushOutput("A brave new world this is!");
 						con.pushNewLine();
 					} else if(input.toLowerCase() == "?" || input.toLowerCase() == "help") {
-						con.pushOutput("Visit http://www.github.com/Gnxela/alexng.me for more information.");
+						con.pushOutput("Visit ");
+						con.setColors(0x000000, 0xaa44ff);
+						con.pushOutput("http://www.github.com/Gnxela/alexng.me");
+						con.resetColors();
+						con.pushOutput(" for more information.");
 						con.pushNewLine();
 					} else {
 						con.pushOutput("Unknown command.");
