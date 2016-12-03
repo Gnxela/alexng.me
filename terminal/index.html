@@ -43,7 +43,9 @@
 
 			var con = new Console($(".console"));
 			con.setCallback(callback);
+			con.setColors(0x000000, 0x22aaff);
 			con.pushOutput("Welcome. Type ? or 'help' for a list of commands.");
+			con.resetColors();
 			con.pushNewLine();
 			con.pushOutput("> ");
 		});

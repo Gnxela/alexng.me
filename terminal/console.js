@@ -24,8 +24,20 @@ var Console = function (div) {
 	this.commandPosition = 0;
 	this.commandHandlers = new Array();
 	this.callback = null;
+	this.forgroundColor = 0xffffff;
+	this.backgroundColor = 0x000000;
 
 	/* Methods */
+
+	this.resetColors = function() {
+		self.backgroundColor = 0x000000;
+		self.forgroundColor = 0xffffff;
+	}
+
+	this.setColors = function(backgroundColor, forgroundColor) {
+		self.backgroundColor = backgroundColor;
+		self.forgroundColor = forgroundColor;
+	}
 
 	this.setCallback = function(callback) {
 		self.callback = callback;
@@ -36,7 +48,8 @@ var Console = function (div) {
 	}
 
 	this.pushOutput = function(output) {
-		$(".console-input-container").before(output);
+		styles = "color: " + self.forgroundColor.toString(16) + "; background-color: " + self.backgroundColor.toString(16) + ";"
+		$(".console-input-container").before("<span style=\"" + styles + "\">" + output + "</span>");
 	}
 
 	var pushInput = function(input) {
