@@ -1,14 +1,3 @@
-/**
-	TODO:	-Commands
-				-OO
-				-Command history (press up and down)
-			-File system (Perhapse make actual files?)
-			-Users
-				-Delete after 'x' minutes
-				-Tie in with file system
-			-Text wrapping (and caret)
-**/
-
 var Console = function (div) {
 	/* Variables */
 
