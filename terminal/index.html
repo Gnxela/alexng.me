@@ -32,9 +32,9 @@
 						con.pushNewLine();
 					} else if(input.toLowerCase() == "?" || input.toLowerCase() == "help") {
 						con.pushOutput("Visit ");
-						con.setColors(0x000000, 0xaa44ff);
+						con.setOutputColors(0x000000, 0xaa44ff);
 						con.pushOutput("http://www.github.com/Gnxela/alexng.me");
-						con.resetColors();
+						con.resetOutputColors();
 						con.pushOutput(" for more information.");
 						con.pushNewLine();
 					} else {
@@ -46,10 +46,11 @@
 			}
 
 			var con = new Console($(".console"));
+			con.setCaretColor(0xff4411);
 			con.setCallback(callback);
-			con.setColors(0x000000, 0x22aaff);
+			con.setOutputColors(0x000000, 0x22aaff);
 			con.pushOutput("Welcome. Type ? or 'help' for a list of commands.");
-			con.resetColors();
+			con.resetOutputColors();
 			con.pushNewLine();
 			con.pushOutput("> ");
 		});

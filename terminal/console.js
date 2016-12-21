@@ -12,20 +12,30 @@ var Console = function (div) {
 	this.currentCommand = "";
 	this.commandPosition = 0;
 	this.commandHandlers = new Array();
+
+	/* Used Variable */
 	this.callback = null;
-	this.forgroundColor = 0xffffff;
-	this.backgroundColor = 0x000000;
+
+	/* Styling */
+	this.outputForgroundColor = 0xffffff;
+	this.outputBackgroundColor = 0x000000;
+	this.caretColor = 0x32ff32;
 
 	/* Methods */
 
-	this.resetColors = function() {
-		self.backgroundColor = 0x000000;
-		self.forgroundColor = 0xffffff;
+	this.resetOutputColors = function() {
+		self.outputBackgroundColor = 0x000000;
+		self.outputForgroundColor = 0xffffff;
 	}
 
-	this.setColors = function(backgroundColor, forgroundColor) {
-		self.backgroundColor = backgroundColor;
-		self.forgroundColor = forgroundColor;
+	this.setOutputColors = function(backgroundColor, forgroundColor) {
+		self.outputBackgroundColor = backgroundColor;
+		self.outputForgroundColor = forgroundColor;
+	}
+
+	this.setCaretColor = function(caretColor) {
+		console.log(self.caretColor);
+		self.caretColor = caretColor;
 	}
 
 	this.setCallback = function(callback) {
@@ -37,7 +47,7 @@ var Console = function (div) {
 	}
 
 	this.pushOutput = function(output) {
-		styles = "color: " + self.forgroundColor.toString(16) + "; background-color: " + self.backgroundColor.toString(16) + ";"
+		styles = "color: " + self.outputForgroundColor.toString(16) + "; background-color: " + self.outputBackgroundColor.toString(16) + ";"
 		$(".console-input-container").before("<span style=\"" + styles + "\">" + output + "</span>");
 		scrollToBottom();
 	}
@@ -147,6 +157,7 @@ var Console = function (div) {
 		caret.css("left", (self.caretPosition * 7))
 		caret.text(getInput().charAt(self.caretPosition))//If the caret is over a character, it must be displayed on top of the caret.
 		caret.css("color", $(".console").css("background-color"));
+		caret.css("background-color", self.caretColor.toString(16));
 	}
 
 	/* Initialisation */
