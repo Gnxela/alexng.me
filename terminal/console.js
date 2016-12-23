@@ -1,8 +1,15 @@
-var Console = function (div) {
+var Console = function (div, width, height) {
+	if (width == null)
+		width = 500;
+	if (height == null)
+		height = 300;
+
 	/* Variables */
 	var self = this;//Must be used when scope is changed
 
-	this.fontSize = 18;
+	this.fontSize = 12;
+	this.consoleWidth = width;
+	this.consoleHeight = height;
 
 	this.caretPosition = 0;
 	this.caretBlink = false;
@@ -33,7 +40,6 @@ var Console = function (div) {
 	}
 
 	this.setCaretColor = function(caretColor) {
-		console.log(self.caretColor);
 		self.caretColor = caretColor;
 	}
 
@@ -151,7 +157,9 @@ var Console = function (div) {
 	console.log("Modifying CSS.")
 	$(".console").css({
 		"font-size" : self.fontSize + "px",
-		"line-height" : self.fontSize + "px"
+		"line-height" : self.fontSize + "px",
+		"width" : self.consoleWidth + "px",
+		"height" : self.consoleHeight + "px"
 	});
 
 	console.log("Initialing caret");
@@ -170,7 +178,8 @@ var Console = function (div) {
 	}
 	$(".caret").css({
 		"width"  : "1.5ex",
-		"height" : (self.fontSize) + "px"
+		"height" : (self.fontSize) + "px",
+		"margin-bottom" : "-5px"
 	});
 	var caretTimer = setInterval(updateCaretTimer, 50);
 
