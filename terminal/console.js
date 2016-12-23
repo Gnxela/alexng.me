@@ -220,6 +220,14 @@ var Console = function (div, width, height) {
 				bumpCaret();
 				updateCaret()
 				break;
+			case 46:
+				var text = getInput();
+				var position = self.caretPosition;
+				var output = text.substr(0, position) + text.substr(position + 1, text.length);
+				setInput(output);
+				bumpCaret();
+				updateCaret()
+				break;
 			case 37: // left
 				moveLeft();
 				bumpCaret();
