@@ -36,6 +36,7 @@
 
 .console-input {
 	color: #ccc;
+	white-space: pre;
 }
 
 .console-input-textarea {

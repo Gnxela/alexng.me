@@ -138,8 +138,8 @@ var Console = function (div, width, height) {
 		if(self.caretPosition < 0) {//Change to clamp?
 			self.caretPosition = 0;
 		}
-		if(self.caretPosition > $(".console-input").text().length) {
-			self.caretPosition = $(".console-input").text().length;
+		if(self.caretPosition > getInput().length) {
+			self.caretPosition = getInput().length;
 		}
 		var caret = $(".caret");
 		caret.css("opacity", (self.caretBlink ? 1 : 0));
@@ -152,7 +152,7 @@ var Console = function (div, width, height) {
 	/* Initialisation */
 
 	console.log("Injecting console into div.")
-	div.html("<div class=\"console-input-container\"><div class=\"caret\" style=\"position: absolute; top: 0px; left: 7px;\"></div><div class=\"console-input\"></div></div></div><textarea class=\"console-input-textarea\" id=\"input\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\"></textarea></div></div>");
+	div.html("<div class=\"console-input-container\"><div class=\"caret\" style=\"position: absolute; top: 0px; left: 7px;\"></div>	<div class=\"console-input\"></div></div></div><textarea class=\"console-input-textarea\" id=\"input\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\"></textarea></div></div>");
 
 	console.log("Modifying CSS.")
 	$(".console").css({
@@ -192,16 +192,16 @@ var Console = function (div, width, height) {
 		switch(e.which) {
 			case 13:
 				//console.log("'ENTER' was pressed.");
-				pushInput($(".console-input").text());
+				pushInput(getInput());
 				bumpCaret();
 				updateCaret()
 				break;
 			default:
 				//console.log("'" + String.fromCharCode(e.which) + "' was pressed.");
 				var position = self.caretPosition;
-				var text = $(".console-input").text();
+				var text = getInput();
 				var output = text.substr(0, position) + String.fromCharCode(e.which) + text.substr(position, text.length);
-				$("	.console-input").text(output);
+				setInput(output);
 				moveRight();
 				bumpCaret();
 				updateCaret()
@@ -212,10 +212,10 @@ var Console = function (div, width, height) {
 		switch(e.which) {
 			case 8:
 				//console.log("'BACKSPACE' was pressed.");
-				var text = $(".console-input").text();
+				var text = getInput();
 				var position = self.caretPosition;
 				var output = text.substr(0, position - 1) + text.substr(position, text.length);
-				$("	.console-input").text(output);
+				setInput(output);
 				moveLeft();
 				bumpCaret();
 				updateCaret()
