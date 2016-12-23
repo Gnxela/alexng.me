@@ -1,7 +1,8 @@
 var Console = function (div) {
 	/* Variables */
-
 	var self = this;//Must be used when scope is changed
+
+	this.fontSize = 18;
 
 	this.caretPosition = 0;
 	this.caretBlink = false;
@@ -15,14 +16,12 @@ var Console = function (div) {
 
 	/* Used Variable */
 	this.callback = null;
-
 	/* Styling */
 	this.outputForgroundColor = 0xffffff;
 	this.outputBackgroundColor = 0x000000;
 	this.caretColor = 0x32ff32;
 
 	/* Methods */
-
 	this.resetOutputColors = function() {
 		self.outputBackgroundColor = 0x000000;
 		self.outputForgroundColor = 0xffffff;
@@ -63,22 +62,6 @@ var Console = function (div) {
 	var scrollToBottom = function() {
 		$(".console").scrollTop($(".console")[0].scrollHeight);
 	}
-
-	console.log("Initialing caret");
-	var updateCaretTimer = function() {
-		if($(".console-input-textarea").is(":focus")) {
-			self.caretTicks = self.caretTicks + 1;
-			if(self.caretTicks > self.caretBlinkTime) {
-				self.caretTicks = 0;
-				self.caretBlink = !self.caretBlink;
-				updateCaret()
-			}
-		} else if(self.caretBlink) {
-			self.caretBlink = false;
-			updateCaret();
-		}
-	}
-	var caretTimer = setInterval(updateCaretTimer, 50);
 
 	var addCommandToHistory = function(command) {
 		self.currentCommand = "";
@@ -153,8 +136,8 @@ var Console = function (div) {
 			self.caretPosition = $(".console-input").text().length;
 		}
 		var caret = $(".caret");
-		caret.css("opacity", (self.caretBlink ? 1 : 0))
-		caret.css("left", (self.caretPosition * 7))
+		caret.css("opacity", (self.caretBlink ? 1 : 0));
+		caret.css("left", (self.caretPosition * parseInt(caret.css("width"))));
 		caret.text(getInput().charAt(self.caretPosition))//If the caret is over a character, it must be displayed on top of the caret.
 		caret.css("color", $(".console").css("background-color"));
 		caret.css("background-color", self.caretColor.toString(16));
@@ -164,6 +147,32 @@ var Console = function (div) {
 
 	console.log("Injecting console into div.")
 	div.html("<div class=\"console-input-container\"><div class=\"caret\" style=\"position: absolute; top: 0px; left: 7px;\"></div><div class=\"console-input\"></div></div></div><textarea class=\"console-input-textarea\" id=\"input\" autocomplete=\"off\" autocorrect=\"off\" autocapitalize=\"off\" spellcheck=\"false\"></textarea></div></div>");
+
+	console.log("Modifying CSS.")
+	$(".console").css({
+		"font-size" : self.fontSize + "px",
+		"line-height" : self.fontSize + "px"
+	});
+
+	console.log("Initialing caret");
+	var updateCaretTimer = function() {
+		if($(".console-input-textarea").is(":focus")) {
+			self.caretTicks = self.caretTicks + 1;
+			if(self.caretTicks > self.caretBlinkTime) {
+				self.caretTicks = 0;
+				self.caretBlink = !self.caretBlink;
+				updateCaret()
+			}
+		} else if(self.caretBlink) {
+			self.caretBlink = false;
+			updateCaret();
+		}
+	}
+	$(".caret").css({
+		"width"  : "1.5ex",
+		"height" : (self.fontSize) + "px"
+	});
+	var caretTimer = setInterval(updateCaretTimer, 50);
 
 	console.log("Creating event handlers.");
 	$(".console-input-textarea").focus(function(e) {
