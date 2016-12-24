@@ -179,7 +179,9 @@ var Console = function (div, width, height) {
 	$(".caret").css({
 		"width"  : "1.5ex",
 		"height" : (self.fontSize) + "px",
-		"padding-top" : "2px"
+		"margin-top" : "1px",
+		"padding-top" : "1px",
+		"padding-bottom" : "1px"
 	});
 	var caretTimer = setInterval(updateCaretTimer, 50);
 
