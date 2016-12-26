@@ -37,6 +37,9 @@
 						con.resetOutputColors();
 						con.pushOutput(" for more information.");
 						con.pushNewLine();
+					} else if(input.toLowerCase().startsWith("font")) {
+						var size = parseInt(input.substring(5));
+						con.setFontSize(size);
 					} else {
 						con.pushOutput("Unknown command.");
 						con.pushNewLine();

@@ -29,6 +29,15 @@ var Console = function (div, width, height) {
 	this.caretColor = 0x32ff32;
 
 	/* Methods */
+	this.setFontSize = function(size) {
+		self.fontSize = size;
+		$(".console").css({
+			"font-size" : self.fontSize + "px",
+			"line-height" : self.fontSize + "px"
+		});
+		$(".caret").css("height", self.fontSize + "px");
+	}
+
 	this.resetOutputColors = function() {
 		self.outputBackgroundColor = 0x000000;
 		self.outputForgroundColor = 0xffffff;
@@ -143,7 +152,11 @@ var Console = function (div, width, height) {
 		}
 		var caret = $(".caret");
 		caret.css("opacity", (self.caretBlink ? 1 : 0));
-		caret.css("left", (self.caretPosition * parseInt(caret.css("width"))));
+		//caret.css("left", (self.caretPosition * parseInt(caret.css("width"))));
+		if(getInput().length == 0)
+			caret.css("left", "0px")
+		else
+			caret.css("left", (self.caretPosition * (parseInt($(".console-input").css("width")) / getInput().length) + 1))//Perhapse store value to avoid calculations every time
 		caret.text(getInput().charAt(self.caretPosition))//If the caret is over a character, it must be displayed on top of the caret.
 		caret.css("color", $(".console").css("background-color"));
 		caret.css("background-color", self.caretColor.toString(16));
