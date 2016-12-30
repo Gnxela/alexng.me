@@ -129,7 +129,7 @@ $(document).ready(function() {
                         var oldOffset = old.offset();
                         var temp = neww.clone().appendTo('body').css("opacity", 1);
 			temp.css('position', 'absolute').css('left', oldOffset.left - neww.data('dx') - parseInt($(this).css("margin-left"))).css('top', oldOffset.top - neww.data('dy') - parseInt($(this).css("margin-top"))).css('z-index', index);
-                        temp.animate({'top': newOffset.top - neww.data('dy') - parseInt($(this).css("margin-top")), 'left': newOffset.left + 8 - neww.data('dx') - parseInt($(this).css("margin-left"))}, 600, function() {
+                        temp.animate({'top': newOffset.top - neww.data('dy') - parseInt($(this).css("margin-top")), 'left': newOffset.left - neww.data('dx') - parseInt($(this).css("margin-left"))}, 600, function() {
                                 neww.css("opacity", 1);
                                 old.remove();
 				temp.remove();

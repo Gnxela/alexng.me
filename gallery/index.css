@@ -4,6 +4,10 @@
 	font-family: "Open Sans Condensed";
 }
 
+html {
+	overflow-y: scroll;
+}
+
 body {
 	background-color: #eeeeee;
 }
