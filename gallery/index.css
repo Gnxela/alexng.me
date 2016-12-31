@@ -43,6 +43,19 @@ body {
 	text-align: center;
 }
 
+.year {
+	position: relative;
+}
+
+.year:after, .year:before {
+	content: "";
+	display: inline-block;
+	border-bottom: 1px solid black;
+	width: 75px;
+	height: 7px;
+	margin: 0px 3px 6px 3px;
+}
+
 .album {
 	position: relative;
 	width: 375px;
