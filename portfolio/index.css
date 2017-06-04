@@ -224,7 +224,7 @@ h1, h2, h3 {
 	position: relative;
 	top: 10px;/* Fix off centering */
 	display: inline-block;
-	padding: 4px 10px 5px 12px;
+	padding: 3px 10px 5px 12px;
 	border: 1px solid rgba(0, 0, 0, 0.3);
 	overflow: hidden;
 	transition: 1s all;
