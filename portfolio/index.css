@@ -27,7 +27,8 @@ h1, h2, h3 {
 
 .frontpage {
 	height: 100%;
-	background-image: url('res/frontpage.jpg');
+	/* background-image: url('res/frontpage.jpg'); */
+	opacity: 0;
 	background-size: cover;
 	color: white;
 	font-family: 'Open Sans Condensed', sans-serif;
