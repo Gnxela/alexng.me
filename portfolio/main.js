@@ -1,4 +1,8 @@
 $(document).ready(function() {
+        var color = "rgb(" + Math.round(Math.random() * 256) + ", " + Math.round(Math.random() * 256) + ", " + Math.round(Math.random() * 256) + ")";
+	$('.colorChange').css('color', color);
+	document.querySelector('.colorChange').offsetHeight;//Forces a redraw, without this the color would transition instead on bring set from the beginning;
+	$('.colorChange').css("transition", "color 5s")
 	colorChange();
 	setInterval(colorChange, 5000);
 
