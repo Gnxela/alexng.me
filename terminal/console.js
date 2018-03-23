@@ -32,8 +32,7 @@ var Console = function (div, width, height) {
 	this.setFontSize = function(size) {
 		self.fontSize = size;
 		$(".console").css({
-			"font-size" : self.fontSize + "px",
-			"line-height" : self.fontSize + "px"
+			"font-size" : self.fontSize + "px"
 		});
 		$(".caret").css("height", self.fontSize + "px");
 	}
@@ -156,7 +155,7 @@ var Console = function (div, width, height) {
 		if(getInput().length == 0)
 			caret.css("left", "0px")
 		else
-			caret.css("left", (self.caretPosition * (parseInt($(".console-input").css("width")) / getInput().length) + 1))//Perhapse store value to avoid calculations every time
+			caret.css("left", (self.caretPosition * (0.013 + parseInt($(".console-input").css("width")) / getInput().length)))//Perhapse store value to avoid calculations every time
 		caret.text(getInput().charAt(self.caretPosition))//If the caret is over a character, it must be displayed on top of the caret.
 		caret.css("color", $(".console").css("background-color"));
 		caret.css("background-color", self.caretColor.toString(16));
@@ -170,7 +169,6 @@ var Console = function (div, width, height) {
 	console.log("Modifying CSS.")
 	$(".console").css({
 		"font-size" : self.fontSize + "px",
-		"line-height" : self.fontSize + "px",
 		"width" : self.consoleWidth + "px",
 		"height" : self.consoleHeight + "px"
 	});
@@ -190,9 +188,9 @@ var Console = function (div, width, height) {
 		}
 	}
 	$(".caret").css({
-		"width"  : "1.5ex",
+		"width"  : "0.6em",
 		"height" : (self.fontSize) + "px",
-		"margin-top" : "1px",
+		"margin-top" : "-1px",
 		"padding-top" : "1px",
 		"padding-bottom" : "1px"
 	});

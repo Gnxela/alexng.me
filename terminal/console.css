@@ -1,3 +1,7 @@
+@font-face {
+	font-family: 'Lucida Console';
+	src: url('Lucida Console.ttf')  format('truetype'); /* Need to add more formats! */
+}
 .caret {
 	display: inline-block;
 	background-color: #32ff32;
@@ -5,20 +9,18 @@
 }
 
 .console {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
+	position: relative;
+	padding: 5px;
 	border: 1px grey solid;
 	overflow-x: hidden;
 	overflow-y: scroll;
 	background-color: black;
 	text-align: left;
 	color: #ccc;
-	font-family: courier;
+	font-family: 'Lucida Console';
 	font-weight: 100;
 	font-size: 12px;
-	line-height: 14px;
+	line-height: 1.3333em;
 }
 
 .console-input-container {
@@ -28,7 +30,6 @@
 
 .console-input, .console-output {
 	color: #ccc;
-	font-family: courier;
 	font-weight: 100;
 	line-height: 14px;
 	display: inline-block;
