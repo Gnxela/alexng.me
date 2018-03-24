@@ -21,6 +21,8 @@
 	font-weight: 100;
 	font-size: 12px;
 	line-height: 1.3333em;
+	word-wrap: break-word;
+	word-break: break-all;
 }
 
 .console-input-container {

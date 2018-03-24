@@ -25,7 +25,8 @@
 				if(input.length > 0) {
 					con.pushOutput(input);
 					con.pushNewLine();
-					if(input == "Hello World!") {
+
+					/*if(input == "Hello World!") {
 						con.pushOutput("A brave new world this is!");
 						con.pushNewLine();
 					} else if(input.toLowerCase() == "?" || input.toLowerCase() == "help") {
@@ -41,7 +42,12 @@
 					} else {
 						con.pushOutput("Unknown command.");
 						con.pushNewLine();
-					}
+					}*/
+
+					con.pushOutput("# ");
+					colorText(con, input, (1 + Math.floor(Math.random() * 4)))
+					con.pushNewLine();
+
 					con.pushOutput("> ");
 				}
 			}
@@ -50,10 +56,34 @@
 			con.setCaretColor(0xCCCCCC);
 			con.setCallback(callback);
 			con.setOutputColors(0x000000, 0x22aaff);
-			con.pushOutput("Welcome. Type ? or 'help' for a list of commands.");
+			//con.pushOutput("Welcome. Type ? or 'help' for a list of commands.");
+			con.pushOutput("Welcome. Enjoy the rainbow!");
 			con.resetOutputColors();
 			con.pushNewLine();
 			con.pushOutput("> ");
 		});
+
+		function RGB2Color(r,g,b) {
+			return '' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
+		}
+
+		function byte2Hex(n) {
+			var nybHexString = "0123456789abcdef";
+			return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
+		}
+
+		function colorText(con, str, phase) {
+			if (phase == undefined) phase = 0;
+			center = 128;
+			width = 127;
+			frequency = Math.PI*2/str.length;
+			let output = ""
+			for (var i = 0; i < str.length; ++i) {
+				 red = Math.sin(frequency*i+2+phase) * width + center;
+				 green = Math.sin(frequency*i+0+phase) * width + center;
+				 blue = Math.sin(frequency*i+4+phase) * width + center;
+				 con.pushOutput('<span style=\'color: #' + RGB2Color(red,green,blue) + ';\'>' + str.substr(i,1) + '</span>');
+			}
+		}
 	</script>
 </body>

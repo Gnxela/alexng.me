@@ -24,7 +24,7 @@ var Console = function (div, width, height) {
 	/* Used Variable */
 	this.callback = null;
 	/* Styling */
-	this.outputForgroundColor = 0xffffff;
+	this.outputForgroundColor = 0xCCCCCC;
 	this.outputBackgroundColor = 0x000000;
 	this.caretColor = 0x32ff32;
 
@@ -39,7 +39,7 @@ var Console = function (div, width, height) {
 
 	this.resetOutputColors = function() {
 		self.outputBackgroundColor = 0x000000;
-		self.outputForgroundColor = 0xffffff;
+		self.outputForgroundColor = 0xCCCCCC;
 	}
 
 	this.setOutputColors = function(backgroundColor, forgroundColor) {
@@ -190,7 +190,7 @@ var Console = function (div, width, height) {
 	$(".caret").css({
 		"width"  : "0.6em",
 		"height" : (self.fontSize) + "px",
-		"margin-top" : "-1px",
+		"margin-top" : "-2px",
 		"padding-top" : "1px",
 		"padding-bottom" : "1px"
 	});
