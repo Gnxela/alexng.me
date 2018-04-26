@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="gallery/jquery-3.0.0.min.js"></script><!-- Totally a good idea -->
+		<style>
+			* {
+				margin: 0px;
+			}
+			.column {
+				display: inline-block;
+				width: 33%;
+				vertical-align: top;
+			}
+
+			.image, .image img {
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="c1" class="column">
+		</div>
+		<div id="c2" class="column">
+		</div>
+		<div id="c3" class="column">
+		</div>
+	</body>
+	<script>
+		$(document).ready(function() {
+			let c1 = $("#c1");
+			let c2 = $("#c2");
+			let c3 = $("#c3");
+			for (let i = 0; i < 10; i++) {
+				c1.append("<div class=\"image\"><img src=\"http://via.placeholder.com/" + (500 + Math.floor(Math.random() * 300)) + "x" +  (500 + Math.floor(Math.random() * 300)) + "/" + (Math.random()*0xFFFFFF<<0).toString(16) + "\"/></div>")
+				c2.append("<div class=\"image\"><img src=\"http://via.placeholder.com/" + (500 + Math.floor(Math.random() * 300)) + "x" +  (500 + Math.floor(Math.random() * 300)) + "/" + (Math.random()*0xFFFFFF<<0).toString(16) + "\"/></div>")
+				c3.append("<div class=\"image\"><img src=\"http://via.placeholder.com/" + (500 + Math.floor(Math.random() * 300)) + "x" +  (500 + Math.floor(Math.random() * 300)) + "/" + (Math.random()*0xFFFFFF<<0).toString(16) + "\"/></div>")
+			}
+		});
+	</script>
+</html>
