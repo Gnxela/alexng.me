@@ -12,6 +12,10 @@
 				border: 0px;
 			}
 
+			html {
+				overflow-y: scroll;
+			}
+
 			#hidden {
 				display: none;
 			}
@@ -29,6 +33,11 @@
 				display: table-cell;
 				width: 33%;
 				vertical-align: top;
+			}
+
+			.image {
+				transition: opacity 2s;
+				opacity: 0;
 			}
 
 			.image, .image img {
@@ -57,15 +66,31 @@
 				columns.push(column);
 			}
 
-			let hidden = $("#hidden");
-			for (let i = 0; i < 25; i++) {
+			function loop(index) {
+				if (index >= 25) {
+					return;
+				}
+
 				//c3.append("<div class=\"image\"><img src=\"http://via.placeholder.com/" + (500 + Math.floor(Math.random() * 300)) + "x" +  (500 + Math.floor(Math.random() * 300)) + "/" + (Math.random()*0xFFFFFF<<0).toString(16) + "\"/></div>")
-				let image = $("<img src=\"https://picsum.photos/" + (500 + Math.floor(Math.random() * 300)) + "/" + (500 + Math.floor(Math.random() * 300)) + "\"/>");
-				image.on("load", (event) => {
+				//let image = $("<img src=\"https://picsum.photos/" + (500 + Math.floor(Math.random() * 300)) + "/" + (500 + Math.floor(Math.random() * 300)) + "\"/>");
+				/*image.on("load", (event) => {
 					$(event.currentTarget).wrap("<div class=\"image\"></div>").parent().appendTo(getSmallestColumn());
-				});
-				hidden.append(image);
+				});*/
+
+				let image = $("<img src=\"http://via.placeholder.com/" + (500 + Math.floor(Math.random() * 300)) + "x" +  (500 + Math.floor(Math.random() * 300)) + "/" + (Math.random()*0xFFFFFF<<0).toString(16) + "?text=." + index + ".\"/>")
+				let element = image.get(0);
+				let interval = setInterval(() => {
+					if (element.naturalWidth) {//Rather than the load event. This allows us to add the image to the DOM as soon as we load it's dimentions.
+						clearInterval(interval);
+						let wrapper = image.wrap("<div class=\"image\"></div>").parent().appendTo(getSmallestColumn())
+						wrapper.get(0).offsetHeight;//Forces a CSS update. This forces the transition to always work. Without it most of the time the commands are batched together and don't work (I think?).
+						//So I think JS batches the wrapping of the image class and the css update, voiding the transiton. Something about micro and macro event queues.
+						wrapper.css("opacity", 1);
+						loop(index + 1);
+					}
+				}, 10);
 			}
+			loop(0);
 
 			function getSmallestColumn() {
 				let smallest = -1;
