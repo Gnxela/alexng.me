@@ -50,7 +50,9 @@
 	</body>
 	<script>
 		$(document).ready(function() {
-			let numColumns = 9;
+			let params = getParams();
+
+			let numColumns = params['cols'] ? params['cols'] : 3;
 			let columns = []
 			let gallery = $(".gallery");
 
@@ -63,7 +65,7 @@
 
 			let imageFlags = [];
 
-			for (let index = 0; index < 100; index++) {
+			for (let index = 0; index < (params['num'] ? params['num'] : 25); index++) {
 				let image = $("<img src=\"http://via.placeholder.com/" + (500 + Math.floor(Math.random() * 300)) + "x" +  (500 + Math.floor(Math.random() * 300)) + "/" + (Math.random()*0xFFFFFF<<0).toString(16) + "?text=." + index + ".\"/>")
 				let element = image.get(0);
 				let interval = setInterval(() => {
@@ -96,6 +98,15 @@
 					}
 				}
 				return columns[smallest];
+			}
+
+			function getParams() {//getGETParams?
+				let object = {};
+				location.search.substr(1).split("&").forEach((param) => {
+					let parts = param.split("=");
+					object[parts[0]] = decodeURIComponent(parts[1]);
+				});
+				return object;
 			}
 		});
 	</script>
