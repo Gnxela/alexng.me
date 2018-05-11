@@ -16,10 +16,6 @@
 				overflow-y: scroll;
 			}
 
-			#hidden {
-				display: none;
-			}
-
 			.section {
 				text-align: center;
 				padding: 20px 0px;
@@ -31,7 +27,6 @@
 
 			.column {
 				display: table-cell;
-				width: 33%;
 				vertical-align: top;
 			}
 
@@ -52,45 +47,38 @@
 			<h2>Drawing Gallery</h2>
 		</div>
 		<div class="gallery"></div>
-		<div id="hidden"></div>
 	</body>
 	<script>
 		$(document).ready(function() {
-			let numColumns = 3;
+			let numColumns = 9;
 			let columns = []
 			let gallery = $(".gallery");
 
 			for (let i = 0; i < numColumns; i++) {
 				let column = $('<div class="column"></div>');
+				column.css("width", (100 / numColumns) + "%");
 				gallery.append(column)
 				columns.push(column);
 			}
 
-			function loop(index) {
-				if (index >= 25) {
-					return;
-				}
+			let imageFlags = [];
 
-				//c3.append("<div class=\"image\"><img src=\"http://via.placeholder.com/" + (500 + Math.floor(Math.random() * 300)) + "x" +  (500 + Math.floor(Math.random() * 300)) + "/" + (Math.random()*0xFFFFFF<<0).toString(16) + "\"/></div>")
-				//let image = $("<img src=\"https://picsum.photos/" + (500 + Math.floor(Math.random() * 300)) + "/" + (500 + Math.floor(Math.random() * 300)) + "\"/>");
-				/*image.on("load", (event) => {
-					$(event.currentTarget).wrap("<div class=\"image\"></div>").parent().appendTo(getSmallestColumn());
-				});*/
-
+			for (let index = 0; index < 100; index++) {
 				let image = $("<img src=\"http://via.placeholder.com/" + (500 + Math.floor(Math.random() * 300)) + "x" +  (500 + Math.floor(Math.random() * 300)) + "/" + (Math.random()*0xFFFFFF<<0).toString(16) + "?text=." + index + ".\"/>")
 				let element = image.get(0);
 				let interval = setInterval(() => {
 					if (element.naturalWidth) {//Rather than the load event. This allows us to add the image to the DOM as soon as we load it's dimentions.
-						clearInterval(interval);
-						let wrapper = image.wrap("<div class=\"image\"></div>").parent().appendTo(getSmallestColumn())
-						wrapper.get(0).offsetHeight;//Forces a CSS update. This forces the transition to always work. Without it most of the time the commands are batched together and don't work (I think?).
-						//So I think JS batches the wrapping of the image class and the css update, voiding the transiton. Something about micro and macro event queues.
-						wrapper.css("opacity", 1);
-						loop(index + 1);
+						if (index == 0 || imageFlags[index - 1]) {//Insure that the image is only added after it's predecessor.
+							clearInterval(interval);
+							let wrapper = image.wrap("<div class=\"image\"></div>").parent().appendTo(getSmallestColumn())
+							wrapper.get(0).offsetHeight;//Forces a CSS update. This forces the transition to always work. Without it most of the time the commands are batched together and don't work (I think?).
+							//So I think JS batches the wrapping of the image class and the css update, voiding the transiton. Something about micro and macro event queues.
+							wrapper.css("opacity", 1);
+							imageFlags[index] = true;
+						}
 					}
 				}, 10);
 			}
-			loop(0);
 
 			function getSmallestColumn() {
 				let smallest = -1;
