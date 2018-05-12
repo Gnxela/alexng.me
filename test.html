@@ -51,32 +51,37 @@
 	<script>
 		$(document).ready(function() {
 			let params = getParams();
-
 			let numColumns = params['cols'] ? params['cols'] : 3;
-			let columns = []
-			let gallery = $(".gallery");
+			let numImages = params['num'] ? params['num'] : 25;
 
+			let columns = []
+			let imageFlags = [];
+
+			//Adds the columns to the gallery.
 			for (let i = 0; i < numColumns; i++) {
 				let column = $('<div class="column"></div>');
 				column.css("width", (100 / numColumns) + "%");
-				gallery.append(column)
+				$(".gallery").append(column)
 				columns.push(column);
 			}
 
-			let imageFlags = [];
+			//Loads the images into the columns.
+			for (let index = 0; index < numImages; index++) {
+				loadImage(index, "http://via.placeholder.com/" + (500 + Math.floor(Math.random() * 300)) + "x" +  (500 + Math.floor(Math.random() * 300)) + "/" + (Math.random()*0xFFFFFF<<0).toString(16) + "?text=." + index + ".");
+			}
 
-			for (let index = 0; index < (params['num'] ? params['num'] : 25); index++) {
-				let image = $("<img src=\"http://via.placeholder.com/" + (500 + Math.floor(Math.random() * 300)) + "x" +  (500 + Math.floor(Math.random() * 300)) + "/" + (Math.random()*0xFFFFFF<<0).toString(16) + "?text=." + index + ".\"/>")
+			function loadImage(position, src) {
+				let image = $("<img src=\"" + src + "\"/>")
 				let element = image.get(0);
 				let interval = setInterval(() => {
 					if (element.naturalWidth) {//Rather than the load event. This allows us to add the image to the DOM as soon as we load it's dimentions.
-						if (index == 0 || imageFlags[index - 1]) {//Insure that the image is only added after it's predecessor.
+						if (position == 0 || imageFlags[position - 1]) {//Insure that the image is only added after it's predecessor.
 							clearInterval(interval);
 							let wrapper = image.wrap("<div class=\"image\"></div>").parent().appendTo(getSmallestColumn())
 							wrapper.get(0).offsetHeight;//Forces a CSS update. This forces the transition to always work. Without it most of the time the commands are batched together and don't work (I think?).
 							//So I think JS batches the wrapping of the image class and the css update, voiding the transiton. Something about micro and macro event queues.
 							wrapper.css("opacity", 1);
-							imageFlags[index] = true;
+							imageFlags[position] = true;
 						}
 					}
 				}, 10);
