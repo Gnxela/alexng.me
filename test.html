@@ -39,6 +39,25 @@
 				width: 100%;
 				display: block;
 			}
+
+			.fullscreen {
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.7);
+				user-select: none;
+			}
+
+			.fullscreen > img {
+				position: relative;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: auto;
+				height: auto;
+			}
 		</style>
 	</head>
 	<body>
@@ -77,14 +96,28 @@
 					if (element.naturalWidth) {//Rather than the load event. This allows us to add the image to the DOM as soon as we load it's dimentions.
 						if (position == 0 || imageFlags[position - 1]) {//Insure that the image is only added after it's predecessor.
 							clearInterval(interval);
-							let wrapper = image.wrap("<div class=\"image\"></div>").parent().appendTo(getSmallestColumn())
-							wrapper.get(0).offsetHeight;//Forces a CSS update. This forces the transition to always work. Without it most of the time the commands are batched together and don't work (I think?).
-							//So I think JS batches the wrapping of the image class and the css update, voiding the transiton. Something about micro and macro event queues.
-							wrapper.css("opacity", 1);
+							addImage(image)
 							imageFlags[position] = true;
 						}
 					}
 				}, 10);
+			}
+
+			function addImage(image) {
+				let wrapper = image.wrap("<div class=\"image\"></div>").parent().appendTo(getSmallestColumn())
+				wrapper.get(0).offsetHeight;//Forces a CSS update. This forces the transition to always work. Without it most of the time the commands are batched together and don't work (I think?).
+				//So I think JS batches the wrapping of the image class and the css update, voiding the transiton. Something about micro and macro event queues.
+				wrapper.css("opacity", 1);
+				wrapper.on('click', (e) => {
+					let clone = $(e.currentTarget).clone();
+					clone.addClass("fullscreen").appendTo($(".gallery"));
+					clone.on('click', (e) => {
+						$(e.currentTarget).remove();
+					});
+					clone.find("img").on('click', (e) => {
+						e.stopPropagation();
+					});
+				});
 			}
 
 			function getSmallestColumn() {
