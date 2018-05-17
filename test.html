@@ -50,15 +50,34 @@
 				user-select: none;
 			}
 
-			.fullscreen > img {
+			.fullscreen > .wrapper {
 				position: relative;
 				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
+				transform: translate(0, -50%);
+				margin: 0px auto;
+				width: fit-content;
+				height: fit-content;
+				max-width: 98%;
+				max-height: 98%;
+			}
+
+			.fullscreen > .wrapper > img {
+				display: inline-block;
 				width: auto;
 				height: auto;
 				max-width: 100%;
 				max-height: 100%;
+			}
+
+			.fullscreen > .wrapper > .control {
+				display: inline-block;
+				position: relative;
+				bottom: 50%;
+				transform: translate(0, 50%);
+				background-color: red;
+				margin: 10px;
+				width: 50px;
+				height: 100px;
 			}
 		</style>
 	</head>
@@ -76,7 +95,7 @@
 			let numImages = params['num'] ? params['num'] : 25;
 
 			let columns = []
-			let imageFlags = [];
+			let images = [];
 
 			//Adds the columns to the gallery.
 			for (let i = 0; i < numColumns; i++) {
@@ -96,29 +115,50 @@
 				let element = image.get(0);
 				let interval = setInterval(() => {
 					if (element.naturalWidth) {//Rather than the load event. This allows us to add the image to the DOM as soon as we load it's dimentions.
-						if (position == 0 || imageFlags[position - 1]) {//Insure that the image is only added after it's predecessor.
+						if (position == 0 || images[position - 1]) {//Insure that the image is only added after it's predecessor.
 							clearInterval(interval);
-							addImage(image)
-							imageFlags[position] = true;
+							images[position] = addImage(image, position);
 						}
 					}
 				}, 10);
 			}
 
-			function addImage(image) {
+			function addImage(image, position) {
 				let wrapper = image.wrap("<div class=\"image\"></div>").parent().appendTo(getSmallestColumn())
-				wrapper.get(0).offsetHeight;//Forces a CSS update. This forces the transition to always work. Without it most of the time the commands are batched together and don't work (I think?).
-				//So I think JS batches the wrapping of the image class and the css update, voiding the transiton. Something about micro and macro event queues.
+				wrapper.data("position", position);
+				wrapper.get(0).offsetHeight;//Forces a CSS update. This forces the transition to always work. Without it most of the time the commands are batched together and don't work (I think?). So I think JS batches the wrapping of the image class and the css update, voiding the transiton. Something about micro and macro event queues.
 				wrapper.css("opacity", 1);
 				wrapper.on('click', (e) => {
-					let clone = $(e.currentTarget).clone();
-					clone.addClass("fullscreen").appendTo($(".gallery"));
-					clone.on('click', (e) => {
-						$(e.currentTarget).remove();
-					});
-					clone.find("img").on('click', (e) => {
-						e.stopPropagation();
-					});
+					let position = $(e.currentTarget).data("position");
+					openImage(position);
+				});
+				return wrapper;
+			}
+
+			function openImage(position) {
+				let clone = images[position].clone();
+				let controlLeft = $('<div class="control left"></div>');
+				let controlRight = $('<div class="control right"></div>');
+
+				controlLeft.on('click', () => {
+					clone.remove();
+					openImage(Math.max(0, position - 1));
+				});
+				controlRight.on('click', () => {
+					clone.remove();
+					openImage(Math.min(numImages, position + 1));
+				});
+
+				clone.addClass("fullscreen").appendTo($(".gallery"));
+				clone.on('click', (e) => {
+					clone.remove();
+				});
+
+				let wrapper = clone.find("img").wrap("<div class=\"wrapper\"></div>").parent();
+				wrapper.prepend(controlLeft);
+				wrapper.append(controlRight);
+				wrapper.on('click', (e) => {
+					e.stopPropagation();
 				});
 			}
 
