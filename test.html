@@ -140,18 +140,29 @@
 				let controlLeft = $('<div class="control left"></div>');
 				let controlRight = $('<div class="control right"></div>');
 
+				function keyControl(e) {
+					if (e.which === 39) {//Right arrow
+						openImage(Math.min(numImages - 1, position + 1));//Max index is numImages - 1
+					} else if (e.which === 37) {//Left arrow
+						openImage(Math.max(0, position - 1));
+					}
+					close();
+				}
+
+				$(document).on("keydown", keyControl);
+
 				controlLeft.on('click', () => {
-					clone.remove();
 					openImage(Math.max(0, position - 1));
+					close();
 				});
 				controlRight.on('click', () => {
-					clone.remove();
 					openImage(Math.min(numImages, position + 1));
+					close();
 				});
 
 				clone.addClass("fullscreen").appendTo($(".gallery"));
 				clone.on('click', (e) => {
-					clone.remove();
+					close();
 				});
 
 				let wrapper = clone.find("img").wrap("<div class=\"wrapper\"></div>").parent();
@@ -160,6 +171,13 @@
 				wrapper.on('click', (e) => {
 					e.stopPropagation();
 				});
+
+				function close() {
+					$(document).off("keydown", keyControl);
+					clone.remove();
+				}
+
+				return close;
 			}
 
 			function getSmallestColumn() {
