@@ -38,6 +38,7 @@
 			.image, .image img {
 				width: 100%;
 				display: block;
+				user-select: none;
 			}
 
 			.fullscreen {
@@ -125,13 +126,19 @@
 
 			function addImage(image, position) {
 				let wrapper = image.wrap("<div class=\"image\"></div>").parent().appendTo(getSmallestColumn())
+
 				wrapper.data("position", position);
+
 				wrapper.get(0).offsetHeight;//Forces a CSS update. This forces the transition to always work. Without it most of the time the commands are batched together and don't work (I think?). So I think JS batches the wrapping of the image class and the css update, voiding the transiton. Something about micro and macro event queues.
 				wrapper.css("opacity", 1);
+
+				image.get(0).draggable = false;
+
 				wrapper.on('click', (e) => {
 					let position = $(e.currentTarget).data("position");
 					openImage(position);
 				});
+
 				return wrapper;
 			}
 
@@ -165,7 +172,9 @@
 					close();
 				});
 
-				let wrapper = clone.find("img").wrap("<div class=\"wrapper\"></div>").parent();
+				let image = clone.find("img");
+				image.get(0).draggable = true;
+				let wrapper = image.wrap("<div class=\"wrapper\"></div>").parent();
 				wrapper.prepend(controlLeft);
 				wrapper.append(controlRight);
 				wrapper.on('click', (e) => {
