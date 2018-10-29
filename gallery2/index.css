@@ -52,7 +52,7 @@ html {
 	display: flex;
 	align-items: center;
 	width: fit-content;
-	height: fit-content;
+	height: 100%;
 	padding: 5px;
 }
 

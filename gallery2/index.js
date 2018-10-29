@@ -1,7 +1,8 @@
 $(document).ready(function() {
 	let params = getParams();
 	let numColumns = params['cols'] ? params['cols'] : 3;
-	let numImages = params['num'] ? params['num'] : 25;
+	//let numImages = params['num'] ? params['num'] : 25;
+	let numImages = 71;
 
 	let columns = []
 	let images = [];
@@ -18,7 +19,7 @@ $(document).ready(function() {
 	/*for (let index = 0; index < numImages; index++) {
 		loadImage(index, "http://via.placeholder.com/" + (800 + Math.floor(Math.random() * 500)) + "x" +  (800 + Math.floor(Math.random() * 500)) + "/" + (Math.random()*0xFFFFFF<<0).toString(16) + "?text=." + index + ".");
 	}*/
-	for (let index = 1; index <= 71; index++) {
+	for (let index = 1; index <= numImages; index++) {
 		loadImage(index - 1, "res/" + index + ".jpg");
 	}
 
@@ -41,9 +42,15 @@ $(document).ready(function() {
 		wrapper.data("position", position);
 
 		wrapper.get(0).offsetHeight;//Forces a CSS update. This forces the transition to always work. Without it most of the time the commands are batched together and don't work (I think?). So I think JS batches the wrapping of the image class and the css update, voiding the transiton. Something about micro and macro event queues.
-		image.on("load", () => {
-			wrapper.css("opacity", 1);
-		});
+		if (!image[0].complete) {
+			image.on("load", () => {
+				wrapper.css("opacity", 1);
+			});
+		} else {
+			setTimeout(() => {
+				wrapper.css("opacity", 1);
+			}, position * 200)
+		}
 
 		image.get(0).draggable = false;
 
